@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://pwqpmp3gqsni"]
+
+[ext_resource type="Script" path="res://scripts/editor.gd" id="1_rj01a"]
+[ext_resource type="PackedScene" uid="uid://d2dfffc8m7lxh" path="res://scenes/screen.tscn" id="1_ybar2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qt6s1"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Editor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_rj01a")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(597, 448)
+size_2d_override = Vector2i(597, 448)
+render_target_update_mode = 4
+
+[node name="Screen" parent="SubViewport" instance=ExtResource("1_ybar2")]
+unique_name_in_owner = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.031
+anchor_bottom = 0.056
+offset_right = 1230.32
+offset_bottom = 679.68
+
+[node name="ViewportTexture" type="TextureRect" parent="HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("ViewportTexture_qt6s1")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="CharSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NameEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Roger"
+
+[node name="DialogueEdit" type="TextEdit" parent="HSplitContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+placeholder_text = "Hey all I'm Roger from Persona
+hi hello
+hi"
+
+[node name="ScreenshotBtn" type="Button" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save screenshot"
+
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/NameEdit" to="." method="_on_name_edit_text_changed"]
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/DialogueEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="button_down" from="HSplitContainer/VBoxContainer/ScreenshotBtn" to="." method="_on_screenshot_btn_button_down"]

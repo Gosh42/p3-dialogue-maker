@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2dfffc8m7lxh"]
+
+[ext_resource type="Script" path="res://scripts/screen.gd" id="1_6at0b"]
+[ext_resource type="Texture2D" uid="uid://caubjow1e6lea" path="res://images/ui/example.png" id="1_ylqks"]
+[ext_resource type="Texture2D" uid="uid://cxa484vpt2kh7" path="res://images/ui/I_MOON_00.SPR_9.png" id="2_lmoud"]
+[ext_resource type="Texture2D" uid="uid://cmadhojajy5n0" path="res://images/ui/I_MOON_00.SPR_8.png" id="3_d8yyf"]
+[ext_resource type="Texture2D" uid="uid://p5gnikede6cp" path="res://images/ui/textbox.png" id="4_0xtrg"]
+[ext_resource type="LabelSettings" uid="uid://p3mgberf6nax" path="res://fonts/nametag_label_settings.tres" id="5_77smh"]
+[ext_resource type="LabelSettings" uid="uid://v4csqx1fw3l" path="res://fonts/dialogue_label_settings.tres" id="6_yxv5q"]
+
+[node name="Screen" type="Control"]
+layout_mode = 3
+anchor_right = 0.204
+anchor_bottom = 0.345
+offset_right = 335.88
+offset_bottom = 199.6
+script = ExtResource("1_6at0b")
+
+[node name="Example" type="Sprite2D" parent="."]
+modulate = Color(0.286275, 0.345098, 0.4, 1)
+position = Vector2(298.258, 223.925)
+scale = Vector2(0.999189, 0.999666)
+texture = ExtResource("1_ylqks")
+
+[node name="Corner" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.016
+anchor_right = 1.005
+anchor_bottom = 0.338
+offset_left = 356.0
+offset_top = -11.168
+offset_right = 4.01501
+offset_bottom = -6.42401
+rotation = 0.0261799
+
+[node name="Shadow" type="TextureRect" parent="Corner"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 20.0
+offset_right = 248.0
+offset_bottom = 148.0
+texture = ExtResource("2_lmoud")
+
+[node name="Main" type="TextureRect" parent="Corner"]
+modulate = Color(0.286275, 0.588235, 0.996078, 1)
+layout_mode = 0
+offset_top = -7.0
+offset_right = 256.0
+offset_bottom = 121.0
+texture = ExtResource("3_d8yyf")
+
+[node name="Textbox" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 312.0
+offset_right = 597.0
+offset_bottom = 448.0
+texture = ExtResource("4_0xtrg")
+
+[node name="NameLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 39.0
+offset_top = 339.0
+offset_right = 149.0
+offset_bottom = 400.0
+scale = Vector2(0.6, 0.5)
+text = "Aigis"
+label_settings = ExtResource("5_77smh")
+
+[node name="DialogueLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 50.0
+offset_top = 364.0
+offset_right = 336.0
+offset_bottom = 420.0
+scale = Vector2(0.635, 0.5)
+text = "I comprehend!"
+label_settings = ExtResource("6_yxv5q")
