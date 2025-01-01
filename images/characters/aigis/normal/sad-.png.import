@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1by1n6b3yc1b"
-path="res://.godot/imported/tile026.png-ea219f14a70af709c178b88d36521865.ctex"
+uid="uid://drakygqxlf6he"
+path="res://.godot/imported/sad-.png-e350a0990c328cae4fbd9e96f696cf31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/characters/aigis/school/tile026.png"
-dest_files=["res://.godot/imported/tile026.png-ea219f14a70af709c178b88d36521865.ctex"]
+source_file="res://images/characters/aigis/normal/sad-.png"
+dest_files=["res://.godot/imported/sad-.png-e350a0990c328cae4fbd9e96f696cf31.ctex"]
 
 [params]
 

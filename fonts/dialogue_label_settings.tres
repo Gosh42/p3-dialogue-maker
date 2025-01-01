@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://chjw8frty55ne" path="res://fonts/FOT-SkipStd-B.otf" id="1_0dv0i"]
 
 [resource]
+line_spacing = 6.0
 font = ExtResource("1_0dv0i")
-font_size = 32
+font_size = 33
 font_color = Color(0.321569, 0.321569, 0.360784, 1)

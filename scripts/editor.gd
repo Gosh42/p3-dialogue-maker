@@ -4,6 +4,7 @@ extends Control
 @onready var char_select: OptionButton = %CharSelection
 @onready var screen: Screen = %Screen
 @onready var dialogue_edit: TextEdit = %DialogueEdit
+@onready var time_select: OptionButton = %TimeSelection
 
 
 func _ready() -> void:
@@ -23,3 +24,7 @@ func _on_name_edit_text_changed(new_text: String) -> void:
 
 func _on_text_edit_text_changed() -> void:
 	screen.set_dialogue_text(dialogue_edit.text)
+
+
+func _on_time_selected(index: int) -> void:
+	screen.set_daytime(index)

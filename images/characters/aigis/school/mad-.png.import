@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhyvmvbxjwila"
-path="res://.godot/imported/normal_e.png-9052b429c22902d08e6272375d2b3127.ctex"
+uid="uid://sheoumo7g8n1"
+path="res://.godot/imported/mad-.png-80f82ee0f939d74578f9a3f707344380.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/characters/aigis/normal/normal_e.png"
-dest_files=["res://.godot/imported/normal_e.png-9052b429c22902d08e6272375d2b3127.ctex"]
+source_file="res://images/characters/aigis/school/mad-.png"
+dest_files=["res://.godot/imported/mad-.png-80f82ee0f939d74578f9a3f707344380.ctex"]
 
 [params]
 
