@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2dfffc8m7lxh"]
+[gd_scene load_steps=18 format=3 uid="uid://d2dfffc8m7lxh"]
 
 [ext_resource type="Script" path="res://scripts/screen.gd" id="1_6at0b"]
 [ext_resource type="Texture2D" uid="uid://caubjow1e6lea" path="res://images/ui/example.png" id="1_ylqks"]
@@ -9,7 +9,14 @@
 [ext_resource type="LabelSettings" uid="uid://p3mgberf6nax" path="res://fonts/nametag_label_settings.tres" id="5_77smh"]
 [ext_resource type="Texture2D" uid="uid://bnt2ti1do4bgy" path="res://images/ui/daytimes.png" id="6_b1318"]
 [ext_resource type="LabelSettings" uid="uid://v4csqx1fw3l" path="res://fonts/dialogue_label_settings.tres" id="6_yxv5q"]
+[ext_resource type="Texture2D" uid="uid://bhqm1iyg2fw1n" path="res://images/ui/date_numbers/1.png" id="7_6b8co"]
 [ext_resource type="Texture2D" uid="uid://dgjsd0ncj5g85" path="res://images/ui/textbox_arrow.png" id="7_11vlf"]
+[ext_resource type="Texture2D" uid="uid://qstprj01m78s" path="res://images/ui/date_numbers/1_but_for_january_or_november's_second_digit.png" id="8_ihsva"]
+[ext_resource type="Texture2D" uid="uid://cpf1vpfvtmdh7" path="res://images/ui/date_numbers/2.png" id="8_xr1l4"]
+[ext_resource type="Texture2D" uid="uid://yqojutr0dofi" path="res://images/ui/date_numbers/slash.png" id="9_1c66e"]
+[ext_resource type="Texture2D" uid="uid://d1tivukqq23mq" path="res://images/ui/date_numbers/7.png" id="11_nenrk"]
+[ext_resource type="Texture2D" uid="uid://celek76gd4swx" path="res://images/ui/date_numbers/dot.png" id="12_y4f08"]
+[ext_resource type="Texture2D" uid="uid://cnswpcgvclkef" path="res://images/ui/date_numbers/W.png" id="13_ulsmu"]
 
 [node name="Screen" type="Control"]
 layout_mode = 3
@@ -19,12 +26,14 @@ offset_right = 378.88
 offset_bottom = 199.6
 script = ExtResource("1_6at0b")
 
-[node name="example" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 modulate = Color(0.823529, 0.286275, 0.372549, 1)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 640.0
+offset_bottom = 448.0
 texture = ExtResource("1_ylqks")
+expand_mode = 1
+stretch_mode = 6
 metadata/_edit_lock_ = true
 
 [node name="Character" type="TextureRect" parent="."]
@@ -41,10 +50,9 @@ anchor_top = 0.016
 anchor_right = 1.005
 anchor_bottom = 0.338
 offset_left = 392.0
-offset_top = -8.168
-offset_right = 40.015
-offset_bottom = -3.42401
-metadata/_edit_lock_ = true
+offset_top = -7.168
+offset_right = -3.20001
+offset_bottom = -3.424
 
 [node name="Shadow" type="TextureRect" parent="Corner"]
 layout_mode = 0
@@ -63,13 +71,67 @@ offset_right = 256.0
 offset_bottom = 121.0
 texture = ExtResource("3_d8yyf")
 
-[node name="DaytimeSprite" type="Sprite2D" parent="Corner"]
+[node name="DaytimeSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(51, 30)
+position = Vector2(444, 29)
 texture = ExtResource("6_b1318")
 centered = false
 vframes = 11
 frame = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 478.0
+offset_right = 624.0
+offset_bottom = 28.0
+theme_override_constants/separation = 1
+alignment = 2
+
+[node name="MonthTens" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("7_6b8co")
+
+[node name="MonthOnes" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("8_ihsva")
+
+[node name="Slash" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("9_1c66e")
+
+[node name="DayTens" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("8_xr1l4")
+
+[node name="DayOnes" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("11_nenrk")
+
+[node name="Dot" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("12_y4f08")
+
+[node name="Weekday" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("13_ulsmu")
 
 [node name="Textbox" type="TextureRect" parent="."]
 layout_mode = 0

@@ -56,15 +56,15 @@ layout_mode = 2
 
 [node name="NameEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
-placeholder_text = "Roger"
+placeholder_text = "Character name"
 
 [node name="DialogueEdit" type="TextEdit" parent="HSplitContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
-placeholder_text = "Hey all I'm Roger from Persona
-hi hello
-hi"
+placeholder_text = "Type dialogue here.
+Can be up to three
+lines of text total."
 
 [node name="ArrowCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
@@ -100,6 +100,57 @@ popup/item_9/text = "Dark Hour"
 popup/item_9/id = 9
 popup/item_10/text = "Unknown"
 popup/item_10/id = 10
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MonthSpinBox" type="SpinBox" parent="HSplitContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 12.0
+value = 1.0
+allow_greater = true
+allow_lesser = true
+alignment = 1
+
+[node name="Label" type="Label" parent="HSplitContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "/"
+
+[node name="DaySpinBox" type="SpinBox" parent="HSplitContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 31.0
+value = 1.0
+allow_greater = true
+allow_lesser = true
+alignment = 1
+
+[node name="Label2" type="Label" parent="HSplitContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "*"
+
+[node name="OptionButton" type="OptionButton" parent="HSplitContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+selected = 0
+item_count = 8
+popup/item_0/text = "M"
+popup/item_1/text = "Tu"
+popup/item_1/id = 1
+popup/item_2/text = "W"
+popup/item_2/id = 2
+popup/item_3/text = "Th"
+popup/item_3/id = 3
+popup/item_4/text = "F"
+popup/item_4/id = 4
+popup/item_5/text = "Sa"
+popup/item_5/id = 5
+popup/item_6/text = "Su"
+popup/item_6/id = 6
+popup/item_7/text = "?"
+popup/item_7/id = 7
 
 [node name="HSeparator3" type="HSeparator" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
@@ -143,6 +194,8 @@ text = "Save screenshot"
 [connection signal="text_changed" from="HSplitContainer/VBoxContainer/DialogueEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="toggled" from="HSplitContainer/VBoxContainer/ArrowCheck" to="." method="_on_arrow_check_toggled"]
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/TimeSelection" to="." method="_on_time_selected"]
+[connection signal="value_changed" from="HSplitContainer/VBoxContainer/HBoxContainer2/MonthSpinBox" to="." method="_on_month_changed"]
+[connection signal="value_changed" from="HSplitContainer/VBoxContainer/HBoxContainer2/DaySpinBox" to="." method="_on_day_changed"]
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/HBoxContainer/DayColourSelection" to="." method="_on_day_colour_selected"]
 [connection signal="color_changed" from="HSplitContainer/VBoxContainer/HBoxContainer/DayColourPicker" to="." method="_on_day_colour_picked"]
 [connection signal="button_down" from="HSplitContainer/VBoxContainer/ScreenshotBtn" to="." method="_on_screenshot_btn_button_down"]
