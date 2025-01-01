@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnt2ti1do4bgy"
-path="res://.godot/imported/hours.png-0a863b20f44b7a850da3f2f43547501b.ctex"
+uid="uid://dgjsd0ncj5g85"
+path="res://.godot/imported/textbox_arrow.png-4cc18589ec542d335d86a9a167bd5aae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/ui/hours.png"
-dest_files=["res://.godot/imported/hours.png-0a863b20f44b7a850da3f2f43547501b.ctex"]
+source_file="res://images/ui/textbox_arrow.png"
+dest_files=["res://.godot/imported/textbox_arrow.png-4cc18589ec542d335d86a9a167bd5aae.ctex"]
 
 [params]
 

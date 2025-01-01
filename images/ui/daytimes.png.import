@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdgvctqkj0g0s"
-path="res://.godot/imported/example2.png-60102e9ac33b5cd4477834cb44e51731.ctex"
+uid="uid://bnt2ti1do4bgy"
+path="res://.godot/imported/daytimes.png-e9052364d494e1e4a21edfbf7681e645.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/ui/example2.png"
-dest_files=["res://.godot/imported/example2.png-60102e9ac33b5cd4477834cb44e51731.ctex"]
+source_file="res://images/ui/daytimes.png"
+dest_files=["res://.godot/imported/daytimes.png-e9052364d494e1e4a21edfbf7681e645.ctex"]
 
 [params]
 
