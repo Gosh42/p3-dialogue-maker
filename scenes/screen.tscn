@@ -102,6 +102,7 @@ size_flags_vertical = 8
 texture = ExtResource("8_ihsva")
 
 [node name="Slash" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
@@ -122,6 +123,7 @@ size_flags_vertical = 8
 texture = ExtResource("11_nenrk")
 
 [node name="Dot" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8

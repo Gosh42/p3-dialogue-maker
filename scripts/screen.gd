@@ -7,10 +7,13 @@ extends Control
 
 @onready var corner: TextureRect = %Main
 @onready var daytime_sprite: Sprite2D = %DaytimeSprite
+
 @onready var month_tens: TextureRect = %MonthTens
 @onready var month_ones: TextureRect = %MonthOnes
+@onready var slash: TextureRect = %Slash
 @onready var day_tens: TextureRect = %DayTens
 @onready var day_ones: TextureRect = %DayOnes
+@onready var dot: TextureRect = %Dot
 @onready var weekday: TextureRect = %Weekday
 
 const CORNER_BLUE: Color = Color(0x4996feff)
@@ -134,3 +137,11 @@ func set_custom_colour(colour: Color) -> void:
 
 func change_corner_colour(colour: Color) -> void:
 	corner.modulate = colour
+	
+	for digit: TextureRect in [month_tens, month_ones, day_tens, day_ones]:
+		digit.modulate = Color.from_hsv(colour.h, colour.s, colour.v * 0.2)
+		
+	slash.modulate = Color.from_hsv(colour.h, colour.s * 0.666667, colour.v * 0.25)
+	dot.modulate = Color.from_hsv(colour.h, colour.s * 0.7, colour.v * 0.333333)
+	weekday.modulate = Color.from_hsv(colour.h, colour.s * 0.333333, colour.v * 0.333333)
+	
