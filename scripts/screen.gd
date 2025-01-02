@@ -11,6 +11,7 @@ extends Control
 @onready var month_ones: TextureRect = %MonthOnes
 @onready var day_tens: TextureRect = %DayTens
 @onready var day_ones: TextureRect = %DayOnes
+@onready var weekday: TextureRect = %Weekday
 
 const CORNER_BLUE: Color = Color(0x4996feff)
 const CORNER_BLUE_PORTABLE: Color = Color(0x67bbffff)
@@ -29,6 +30,10 @@ enum Daytimes {
 var digits_ones: Array[Texture2D]
 var digits_tens: Array[Texture2D]
 var digits_month_ones: Array[Texture2D]
+var question_mark_digit: Texture2D
+var weekdays: Array[Texture2D]
+var current_month: int
+var current_day: int
 
 
 func _ready() -> void:
@@ -43,6 +48,11 @@ func _ready() -> void:
 	digits_month_ones = digits_ones.duplicate()
 	digits_month_ones[1] = \
 		preload("res://images/ui/date_numbers/1_but_for_january_or_november's_second_digit.png")
+	
+	question_mark_digit = preload("res://images/ui/date_numbers/question_mark.png")
+	
+	for s: String in ["M", "Tu", "W", "Th", "F", "Sa", "Su", "question_mark_weekday"]:
+		weekdays.append(load("res://images/ui/date_numbers/%s.png" % s))
 
 # =================== NAME AND DIALOGUE ====================== #
 
@@ -71,6 +81,8 @@ func set_daytime(index: int) -> void:
 
 
 func set_month(month: int) -> void:
+	current_month = month
+	
 	var digit1: int = month / 10
 	var digit2: int = month % 10
 	
@@ -79,11 +91,28 @@ func set_month(month: int) -> void:
 
 
 func set_day(day: int) -> void:
+	current_day = day
+	
 	var digit1: int = day / 10
 	var digit2: int = day % 10
 	
 	day_tens.texture = digits_tens[digit1]
 	day_ones.texture = digits_ones[digit2]
+
+
+func set_weekday(index: int) -> void:
+	weekday.texture = weekdays[index]
+	
+	if index == 7: # question mark
+		month_tens.hide()
+		day_tens.hide()
+		
+		month_ones.texture = question_mark_digit
+		day_ones.texture = question_mark_digit
+	elif not month_tens.visible:
+		set_month(current_month)
+		set_day(current_day)
+	
 
 # =================== COLOUR SELECTION ====================== #
 

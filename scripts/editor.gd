@@ -9,6 +9,7 @@ extends Control
 @onready var time_select: OptionButton = %TimeSelection
 @onready var month_spin_box: SpinBox = %MonthSpinBox
 @onready var day_spin_box: SpinBox = %DaySpinBox
+@onready var weekday_select: OptionButton = %WeekdaySelection
 
 @onready var day_colour_select: OptionButton = %DayColourSelection
 
@@ -17,7 +18,37 @@ var colour_index: int = 0
 
 
 func _ready() -> void:
-	pass
+	var time_dict: Dictionary = Time.get_datetime_dict_from_system()
+	
+	var month: int = time_dict["month"]
+	month_spin_box.value = month
+	screen.set_month(month)
+	
+	var day: int = time_dict["day"]
+	day_spin_box.value = day
+	screen.set_day(day)
+	
+	var weekday: int = time_dict["weekday"]
+	weekday = wrapi(weekday - 1, 0, 6)
+	weekday_select.select(weekday)
+	screen.set_weekday(weekday)
+	
+	# time label ("Afternoon", etc)
+	var hour: int = time_dict["hour"]
+	var minutes: int = time_dict["minute"]
+	var hour_index: int = -1
+	
+	if minutes == 0 and (hour == 0 or hour == 24):
+		hour_index = 9 # dark hour
+	else:
+		for i: int in [4, 6, 8, 10, 12, 13, 15, 18, 23]:
+			hour_index += int(hour >= i)
+		
+		if hour_index == -1:
+			hour_index = 8
+	
+	time_select.select(hour_index)
+	screen.set_daytime(hour_index)
 
 
 func _on_screenshot_btn_button_down() -> void:
@@ -66,6 +97,14 @@ func _on_day_changed(value: float) -> void:
 		day_spin_box.value = day_spin_box.max_value
 	else:
 		screen.set_day(value)
+
+
+func _on_weekday_selected(index: int) -> void:
+	var is_question_mark: bool = index != 7
+	month_spin_box.editable = is_question_mark
+	day_spin_box.editable = is_question_mark
+	
+	screen.set_weekday(index)
 
 # =================== COLOUR SELECTION ====================== #
 
