@@ -112,9 +112,14 @@ func set_weekday(index: int) -> void:
 		
 		month_ones.texture = question_mark_digit
 		day_ones.texture = question_mark_digit
+		change_corner_colour(current_colour)
 	elif not month_tens.visible:
+		month_tens.show()
+		day_tens.show()
+		
 		set_month(current_month)
 		set_day(current_day)
+		change_corner_colour(current_colour)
 	
 
 # =================== COLOUR SELECTION ====================== #
@@ -138,10 +143,20 @@ func set_custom_colour(colour: Color) -> void:
 func change_corner_colour(colour: Color) -> void:
 	corner.modulate = colour
 	
+	var digit_colour: Color
+	var weekday_colour: Color
+	
+	if month_tens.visible:
+		digit_colour = Color.from_hsv(colour.h, colour.s, colour.v * 0.2)
+		weekday_colour = Color.from_hsv(colour.h, colour.s * 0.333333, colour.v * 0.333333)
+	else:
+		digit_colour = Color.from_hsv(colour.h, colour.s * 0.666667, colour.v * 0.333333)
+		weekday_colour = digit_colour
+		
 	for digit: TextureRect in [month_tens, month_ones, day_tens, day_ones]:
-		digit.modulate = Color.from_hsv(colour.h, colour.s, colour.v * 0.2)
+		digit.modulate = digit_colour
 		
 	slash.modulate = Color.from_hsv(colour.h, colour.s * 0.666667, colour.v * 0.25)
 	dot.modulate = Color.from_hsv(colour.h, colour.s * 0.7, colour.v * 0.333333)
-	weekday.modulate = Color.from_hsv(colour.h, colour.s * 0.333333, colour.v * 0.333333)
+	weekday.modulate = weekday_colour
 	

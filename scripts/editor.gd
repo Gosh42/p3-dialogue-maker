@@ -66,6 +66,7 @@ func _on_name_edit_text_changed(new_text: String) -> void:
 func _on_text_edit_text_changed() -> void:
 	screen.set_dialogue_text(dialogue_edit.text)
 
+
 func _on_arrow_check_toggled(toggled_on: bool) -> void:
 	screen.toggle_arrow(toggled_on)
 
