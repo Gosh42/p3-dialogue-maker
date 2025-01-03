@@ -49,6 +49,7 @@ func _ready() -> void:
 	
 	time_select.select(hour_index)
 	screen.set_daytime(hour_index)
+	screen.set_moon_phase(30)
 
 
 func _on_screenshot_btn_button_down() -> void:
@@ -106,6 +107,10 @@ func _on_weekday_selected(index: int) -> void:
 	day_spin_box.editable = is_question_mark
 	
 	screen.set_weekday(index)
+
+
+func _on_moon_phase_changed(value: float) -> void:
+	screen.set_moon_phase(30 - value)
 
 # =================== COLOUR SELECTION ====================== #
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2dfffc8m7lxh"]
+[gd_scene load_steps=52 format=3 uid="uid://d2dfffc8m7lxh"]
 
 [ext_resource type="Script" path="res://scripts/screen.gd" id="1_6at0b"]
 [ext_resource type="Texture2D" uid="uid://caubjow1e6lea" path="res://images/ui/example.png" id="1_ylqks"]
@@ -17,6 +17,221 @@
 [ext_resource type="Texture2D" uid="uid://d1tivukqq23mq" path="res://images/ui/date_numbers/7.png" id="11_nenrk"]
 [ext_resource type="Texture2D" uid="uid://celek76gd4swx" path="res://images/ui/date_numbers/dot.png" id="12_y4f08"]
 [ext_resource type="Texture2D" uid="uid://j8nut85wmh7c" path="res://images/ui/date_numbers/Th.png" id="13_qmnv4"]
+[ext_resource type="Material" uid="uid://87kd8pg4a0dc" path="res://materials/addition_canvas_material.tres" id="18_m8c58"]
+[ext_resource type="Texture2D" uid="uid://dhvpxo8x1iku2" path="res://images/ui/moon/moon_bg.png" id="18_svgp6"]
+[ext_resource type="Texture2D" uid="uid://cunj36pwg0v74" path="res://images/ui/moon/Next.png" id="18_wseub"]
+[ext_resource type="Texture2D" uid="uid://032hs7v7x0xg" path="res://images/ui/date_numbers/4.png" id="19_qctan"]
+[ext_resource type="Texture2D" uid="uid://c85tqt0hsecy" path="res://images/ui/moon/yellow12.png" id="19_sjdbc"]
+[ext_resource type="Texture2D" uid="uid://c20c28tw54qqp" path="res://images/ui/moon/glow05.png" id="20_l4bpx"]
+[ext_resource type="Texture2D" uid="uid://c50hw5pnmohm6" path="res://images/ui/moon/new_moon.png" id="21_f82ux"]
+[ext_resource type="Texture2D" uid="uid://bt45a7u2l8uxa" path="res://images/ui/moon/yellow00.png" id="22_wx6kj"]
+[ext_resource type="Texture2D" uid="uid://yobmcby51eg6" path="res://images/ui/moon/yellow01.png" id="23_07gnf"]
+[ext_resource type="Texture2D" uid="uid://ltxykfp0ceda" path="res://images/ui/moon/yellow02.png" id="24_oym2k"]
+[ext_resource type="Texture2D" uid="uid://dfn3im01b33vr" path="res://images/ui/moon/yellow03.png" id="25_7tx2r"]
+[ext_resource type="Texture2D" uid="uid://c0l30fymdx2mh" path="res://images/ui/moon/yellow04.png" id="26_qp4wq"]
+[ext_resource type="Texture2D" uid="uid://dnj5vtisvuroh" path="res://images/ui/moon/yellow05.png" id="27_v562n"]
+[ext_resource type="Texture2D" uid="uid://dsxls8yvtcli8" path="res://images/ui/moon/yellow06.png" id="28_g6osk"]
+[ext_resource type="Texture2D" uid="uid://bj4cgrccvg4n" path="res://images/ui/moon/yellow07.png" id="29_ogx7e"]
+[ext_resource type="Texture2D" uid="uid://biic6x8owl3uu" path="res://images/ui/moon/yellow08.png" id="30_8pjio"]
+[ext_resource type="Texture2D" uid="uid://dudkouaqj0kbk" path="res://images/ui/moon/yellow09.png" id="31_nkso3"]
+[ext_resource type="Texture2D" uid="uid://coc8g7ijeg52n" path="res://images/ui/moon/yellow10.png" id="32_8bbxi"]
+[ext_resource type="Texture2D" uid="uid://4010nd1hg3lx" path="res://images/ui/moon/yellow11.png" id="33_kauxu"]
+[ext_resource type="Texture2D" uid="uid://bdyamyw48hc31" path="res://images/ui/moon/yellow13.png" id="34_hgl41"]
+[ext_resource type="Texture2D" uid="uid://0ybh1qmmqjjn" path="res://images/ui/moon/yellow14.png" id="35_facn1"]
+[ext_resource type="Texture2D" uid="uid://cjjpdr3ikah85" path="res://images/ui/moon/glow00.png" id="36_l104n"]
+[ext_resource type="Texture2D" uid="uid://r20mgoc581w4" path="res://images/ui/moon/glow01.png" id="37_x4yal"]
+[ext_resource type="Texture2D" uid="uid://yj84hqyt7p0c" path="res://images/ui/moon/glow02.png" id="38_66ecc"]
+[ext_resource type="Texture2D" uid="uid://bjena6v1r4h7w" path="res://images/ui/moon/glow03.png" id="39_0kfuf"]
+[ext_resource type="Texture2D" uid="uid://b6ux4plnk7y2r" path="res://images/ui/moon/glow04.png" id="40_v0ys6"]
+[ext_resource type="Texture2D" uid="uid://dgtqfo03b4c3l" path="res://images/ui/moon/glow06.png" id="41_me6hc"]
+[ext_resource type="Texture2D" uid="uid://tlfx1yuaaljo" path="res://images/ui/moon/glow07.png" id="42_3fmfl"]
+[ext_resource type="Texture2D" uid="uid://e7cnpv5tkj4p" path="res://images/ui/moon/Half.png" id="43_70ceh"]
+[ext_resource type="Texture2D" uid="uid://28bgcmxmvtcq" path="res://images/ui/moon/New.png" id="44_fjtqw"]
+[ext_resource type="Texture2D" uid="uid://csusnt74shbuw" path="res://images/ui/moon/Full.png" id="45_5fj3a"]
+
+[sub_resource type="Animation" id="Animation_35dx0"]
+resource_name = "moon_cycle"
+length = 30.0001
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Moon/MoonBG:texture")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 13, 14, 15, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("18_svgp6"), ExtResource("18_svgp6"), ExtResource("21_f82ux"), ExtResource("18_svgp6"), ExtResource("18_svgp6")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Moon/MoonYellow:texture")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 29, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("22_wx6kj"), ExtResource("22_wx6kj"), ExtResource("23_07gnf"), ExtResource("23_07gnf"), ExtResource("24_oym2k"), ExtResource("24_oym2k"), ExtResource("25_7tx2r"), ExtResource("26_qp4wq"), ExtResource("26_qp4wq"), ExtResource("27_v562n"), ExtResource("27_v562n"), ExtResource("28_g6osk"), null, ExtResource("29_ogx7e"), ExtResource("29_ogx7e"), ExtResource("30_8pjio"), ExtResource("30_8pjio"), ExtResource("31_nkso3"), ExtResource("31_nkso3"), ExtResource("32_8bbxi"), ExtResource("33_kauxu"), ExtResource("33_kauxu"), ExtResource("19_sjdbc"), ExtResource("19_sjdbc"), ExtResource("34_hgl41"), ExtResource("34_hgl41"), ExtResource("35_facn1")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Moon/MoonGlow:texture")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 29, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, null, ExtResource("36_l104n"), ExtResource("36_l104n"), ExtResource("37_x4yal"), ExtResource("37_x4yal"), ExtResource("38_66ecc"), ExtResource("38_66ecc"), ExtResource("39_0kfuf"), ExtResource("40_v0ys6"), ExtResource("40_v0ys6"), ExtResource("20_l4bpx"), ExtResource("20_l4bpx"), ExtResource("41_me6hc"), ExtResource("41_me6hc"), ExtResource("42_3fmfl")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Moon/MoonBG:modulate")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 13, 14, 15, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 0.301961), Color(1, 1, 1, 0.301961), Color(1, 1, 1, 1), Color(1, 1, 1, 0.301961), Color(1, 1, 1, 0.301961)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Moon/PhaseText:texture")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 7, 8, 9, 13, 14, 15, 20, 21, 22, 29, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, null, ExtResource("43_70ceh"), null, null, ExtResource("44_fjtqw"), null, null, ExtResource("43_70ceh"), null, null, ExtResource("45_5fj3a")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Moon/PhaseText:position")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(8, 13, 14, 20, 21, 29, 30),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(46, 45), Vector2(46, 45), Vector2(44, 45), Vector2(44, 45), Vector2(46, 45), Vector2(46, 45), Vector2(52, 32)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("NextContainer:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 29, 30),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_8nkws"]
+length = 0.001
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Moon/MoonBG:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("18_svgp6")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Moon/MoonYellow:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("19_sjdbc")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Moon/MoonGlow:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("20_l4bpx")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Moon/MoonBG:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Moon/PhaseText:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Moon/PhaseText:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(552, 70)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("NextContainer:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgaoh"]
+_data = {
+"RESET": SubResource("Animation_8nkws"),
+"moon_cycle": SubResource("Animation_35dx0")
+}
 
 [node name="Screen" type="Control"]
 layout_mode = 3
@@ -53,6 +268,7 @@ offset_left = 392.0
 offset_top = -7.168
 offset_right = -3.20001
 offset_bottom = -3.424
+metadata/_edit_lock_ = true
 
 [node name="Shadow" type="TextureRect" parent="Corner"]
 layout_mode = 0
@@ -78,6 +294,7 @@ texture = ExtResource("6_b1318")
 centered = false
 vframes = 11
 frame = 1
+metadata/_edit_lock_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -86,6 +303,7 @@ offset_right = 624.0
 offset_bottom = 28.0
 theme_override_constants/separation = 1
 alignment = 2
+metadata/_edit_lock_ = true
 
 [node name="MonthTens" type="TextureRect" parent="HBoxContainer"]
 unique_name_in_owner = true
@@ -142,6 +360,7 @@ offset_top = 312.0
 offset_right = 597.0
 offset_bottom = 448.0
 texture = ExtResource("4_0xtrg")
+metadata/_edit_lock_ = true
 
 [node name="Arrow" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -151,6 +370,7 @@ offset_top = 389.0
 offset_right = 599.0
 offset_bottom = 421.0
 texture = ExtResource("7_11vlf")
+metadata/_edit_lock_ = true
 
 [node name="NameLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -163,6 +383,7 @@ scale = Vector2(0.65, 0.5)
 text = "Aigis"
 label_settings = ExtResource("5_77smh")
 max_lines_visible = 1
+metadata/_edit_lock_ = true
 
 [node name="DialogueLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -176,3 +397,81 @@ text = "I comprehend!"
 label_settings = ExtResource("6_yxv5q")
 autowrap_mode = 3
 max_lines_visible = 3
+metadata/_edit_lock_ = true
+
+[node name="Moon" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 500.0
+offset_top = 38.0
+offset_right = 637.0
+offset_bottom = 125.0
+
+[node name="NextContainer" type="HBoxContainer" parent="Moon"]
+layout_mode = 1
+offset_left = -25.0
+offset_top = 12.0
+offset_right = 89.0
+offset_bottom = 42.0
+theme_override_constants/separation = 1
+
+[node name="Next" type="TextureRect" parent="Moon/NextContainer"]
+material = ExtResource("18_m8c58")
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+texture = ExtResource("18_wseub")
+
+[node name="NextTens" type="TextureRect" parent="Moon/NextContainer"]
+unique_name_in_owner = true
+material = ExtResource("18_m8c58")
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("7_6b8co")
+
+[node name="NextOnes" type="TextureRect" parent="Moon/NextContainer"]
+unique_name_in_owner = true
+material = ExtResource("18_m8c58")
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("19_qctan")
+
+[node name="PhaseText" type="TextureRect" parent="Moon"]
+material = ExtResource("18_m8c58")
+offset_left = 552.0
+offset_top = 70.0
+offset_right = 602.0
+offset_bottom = 94.0
+expand_mode = 1
+stretch_mode = 2
+
+[node name="MoonBG" type="TextureRect" parent="Moon"]
+offset_left = 90.0
+offset_top = 21.0
+offset_right = 137.0
+offset_bottom = 68.0
+texture = ExtResource("18_svgp6")
+
+[node name="MoonYellow" type="TextureRect" parent="Moon"]
+offset_left = 90.0
+offset_top = 21.0
+offset_right = 137.0
+offset_bottom = 68.0
+texture = ExtResource("19_sjdbc")
+
+[node name="MoonGlow" type="TextureRect" parent="Moon"]
+material = ExtResource("18_m8c58")
+offset_left = 90.0
+offset_top = 21.0
+offset_right = 137.0
+offset_bottom = 68.0
+texture = ExtResource("20_l4bpx")
+
+[node name="MoonPhase" type="AnimationPlayer" parent="Moon"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_bgaoh")
+}
+speed_scale = 0.0

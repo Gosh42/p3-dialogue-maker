@@ -17,6 +17,7 @@ size_flags_horizontal = 3
 script = ExtResource("1_rj01a")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
 handle_input_locally = false
 size = Vector2i(640, 448)
 size_2d_override = Vector2i(640, 448)
@@ -32,13 +33,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+split_offset = 640
 
 [node name="ViewportTexture" type="TextureRect" parent="HSplitContainer"]
 unique_name_in_owner = true
 texture_filter = 4
 layout_mode = 2
 texture = SubResource("ViewportTexture_qt6s1")
-expand_mode = 2
+expand_mode = 1
 stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
@@ -52,7 +54,7 @@ selected = 0
 item_count = 1
 popup/item_0/text = "TODO: CHARACTER SELECT"
 
-[node name="HSeparator" type="HSeparator" parent="HSplitContainer/VBoxContainer"]
+[node name="== DIALOGUE ==" type="HSeparator" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="NameEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer"]
@@ -63,16 +65,24 @@ placeholder_text = "Character name"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
+text = "TODO:
+- change day limits based on month (29 in feb, etc)
+- more weekday colours (blue saturday, red sunday and holidays etc)
+- toggling the corner away
+- textbox for picking a choice
+- character select, including none, navigator calls and changing position
+- background selection including none, possibly with a few defaults"
 placeholder_text = "Type dialogue here.
 Can be up to three
 lines of text total."
+wrap_mode = 1
 
 [node name="ArrowCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
 button_pressed = true
 text = "Next message arrow"
 
-[node name="HSeparator2" type="HSeparator" parent="HSplitContainer/VBoxContainer"]
+[node name="== TIME AND DATE ==" type="HSeparator" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="TimeSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer"]
@@ -154,7 +164,11 @@ popup/item_6/id = 6
 popup/item_7/text = "?"
 popup/item_7/id = 7
 
-[node name="HSeparator3" type="HSeparator" parent="HSplitContainer/VBoxContainer"]
+[node name="MoonPhaseSlider" type="HSlider" parent="HSplitContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 30.0
+
+[node name="== COLOUR ==" type="HSeparator" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer"]
@@ -185,7 +199,7 @@ size_flags_horizontal = 3
 text = "COLOR!!"
 color = Color(1, 1, 1, 1)
 
-[node name="HSeparator4" type="HSeparator" parent="HSplitContainer/VBoxContainer"]
+[node name="== SAVE ==" type="HSeparator" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="ScreenshotBtn" type="Button" parent="HSplitContainer/VBoxContainer"]
@@ -199,6 +213,7 @@ text = "Save screenshot"
 [connection signal="value_changed" from="HSplitContainer/VBoxContainer/HBoxContainer2/MonthSpinBox" to="." method="_on_month_changed"]
 [connection signal="value_changed" from="HSplitContainer/VBoxContainer/HBoxContainer2/DaySpinBox" to="." method="_on_day_changed"]
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/HBoxContainer2/WeekdaySelection" to="." method="_on_weekday_selected"]
+[connection signal="value_changed" from="HSplitContainer/VBoxContainer/MoonPhaseSlider" to="." method="_on_moon_phase_changed"]
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/HBoxContainer/DayColourSelection" to="." method="_on_day_colour_selected"]
 [connection signal="color_changed" from="HSplitContainer/VBoxContainer/HBoxContainer/DayColourPicker" to="." method="_on_day_colour_picked"]
 [connection signal="button_down" from="HSplitContainer/VBoxContainer/ScreenshotBtn" to="." method="_on_screenshot_btn_button_down"]

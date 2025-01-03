@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rt0cil67onvw"
-path="res://.godot/imported/yeah.png-24ea290454c3d43d03a9d70132bc2c3a.ctex"
+uid="uid://csusnt74shbuw"
+path="res://.godot/imported/Full.png-8ac7a1846b22a7b7861669eb7c63e3fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/yeah.png"
-dest_files=["res://.godot/imported/yeah.png-24ea290454c3d43d03a9d70132bc2c3a.ctex"]
+source_file="res://images/ui/moon/Full.png"
+dest_files=["res://.godot/imported/Full.png-8ac7a1846b22a7b7861669eb7c63e3fb.ctex"]
 
 [params]
 

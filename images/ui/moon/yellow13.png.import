@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1g5bctlsrtsx"
-path="res://.godot/imported/date_numbers.png-b76dbbb88c166e270a6a5afa3a2cb5ee.ctex"
+uid="uid://bdyamyw48hc31"
+path="res://.godot/imported/yellow13.png-d73377946f01353e2c8d46b6f6b72d03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/ui/date_numbers.png"
-dest_files=["res://.godot/imported/date_numbers.png-b76dbbb88c166e270a6a5afa3a2cb5ee.ctex"]
+source_file="res://images/ui/moon/yellow13.png"
+dest_files=["res://.godot/imported/yellow13.png-d73377946f01353e2c8d46b6f6b72d03.ctex"]
 
 [params]
 

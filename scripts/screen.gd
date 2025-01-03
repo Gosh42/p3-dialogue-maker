@@ -6,7 +6,6 @@ extends Control
 @onready var arrow: TextureRect = %Arrow
 
 @onready var corner: TextureRect = %Main
-@onready var daytime_sprite: Sprite2D = %DaytimeSprite
 
 @onready var month_tens: TextureRect = %MonthTens
 @onready var month_ones: TextureRect = %MonthOnes
@@ -15,6 +14,12 @@ extends Control
 @onready var day_ones: TextureRect = %DayOnes
 @onready var dot: TextureRect = %Dot
 @onready var weekday: TextureRect = %Weekday
+
+@onready var daytime_sprite: Sprite2D = %DaytimeSprite
+
+@onready var next_tens: TextureRect = %NextTens
+@onready var next_ones: TextureRect = %NextOnes
+@onready var moon_phase_controller: AnimationPlayer = %MoonPhase
 
 const CORNER_BLUE: Color = Color(0x4996feff)
 const CORNER_BLUE_PORTABLE: Color = Color(0x67bbffff)
@@ -41,6 +46,7 @@ var current_day: int
 
 func _ready() -> void:
 	current_colour = CORNER_BLUE
+	moon_phase_controller.play("moon_cycle")
 	
 	for i in range(10):
 		digits_ones.append(load("res://images/ui/date_numbers/%d.png" % i))
@@ -120,7 +126,20 @@ func set_weekday(index: int) -> void:
 		set_month(current_month)
 		set_day(current_day)
 		change_corner_colour(current_colour)
+
+
+func set_moon_phase(days_until_full: int) -> void:
+	var digit1: int = days_until_full / 10
+	var digit2: int = days_until_full % 10
 	
+	# instead of just using an empty texture like before, i manually hide
+	# the number, because this will make the offset between "Next:" and 
+	# the digit one pixel less, which ends up more accurate to the game
+	next_tens.visible = digit1 > 0
+	next_tens.texture = digits_ones[digit1]
+	next_ones.texture = digits_ones[digit2]
+	
+	moon_phase_controller.seek(30 - days_until_full, true)
 
 # =================== COLOUR SELECTION ====================== #
 
@@ -160,3 +179,5 @@ func change_corner_colour(colour: Color) -> void:
 	dot.modulate = Color.from_hsv(colour.h, colour.s * 0.7, colour.v * 0.333333)
 	weekday.modulate = weekday_colour
 	
+	next_tens.modulate = colour
+	next_ones.modulate = colour
