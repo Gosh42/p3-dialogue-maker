@@ -66,7 +66,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 text = "TODO:
-- change day limits based on month (29 in feb, etc)
 - more weekday colours (blue saturday, red sunday and holidays etc)
 - toggling the corner away
 - textbox for picking a choice

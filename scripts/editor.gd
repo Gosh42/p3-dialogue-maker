@@ -83,12 +83,22 @@ func _on_time_selected(index: int) -> void:
 		day_colour_select.select(colour_index)
 
 
-func _on_month_changed(value: float) -> void:
+func _on_month_changed(val: float) -> void:
+	var value: int = int(val)
 	if value > month_spin_box.max_value:
 		month_spin_box.value = month_spin_box.min_value
 	elif value < month_spin_box.min_value:
 		month_spin_box.value = month_spin_box.max_value
 	else:
+		if value in [1, 3, 5, 7, 8, 10, 12]:
+			day_spin_box.max_value = 31
+		elif value in [4, 6, 9, 11]:
+			day_spin_box.value = mini(day_spin_box.value, 30)
+			day_spin_box.max_value = 30
+		else: # february
+			day_spin_box.value = mini(day_spin_box.value, 29)
+			day_spin_box.max_value = 29
+		
 		screen.set_month(value)
 
 
