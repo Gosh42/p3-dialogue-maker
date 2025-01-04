@@ -163,6 +163,11 @@ popup/item_6/id = 6
 popup/item_7/text = "?"
 popup/item_7/id = 7
 
+[node name="HolidayCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Holiday"
+
 [node name="MoonPhaseSlider" type="HSlider" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
 max_value = 30.0
@@ -212,6 +217,7 @@ text = "Save screenshot"
 [connection signal="value_changed" from="HSplitContainer/VBoxContainer/HBoxContainer2/MonthSpinBox" to="." method="_on_month_changed"]
 [connection signal="value_changed" from="HSplitContainer/VBoxContainer/HBoxContainer2/DaySpinBox" to="." method="_on_day_changed"]
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/HBoxContainer2/WeekdaySelection" to="." method="_on_weekday_selected"]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/HBoxContainer2/HolidayCheck" to="." method="_on_holiday_toggled"]
 [connection signal="value_changed" from="HSplitContainer/VBoxContainer/MoonPhaseSlider" to="." method="_on_moon_phase_changed"]
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/HBoxContainer/DayColourSelection" to="." method="_on_day_colour_selected"]
 [connection signal="color_changed" from="HSplitContainer/VBoxContainer/HBoxContainer/DayColourPicker" to="." method="_on_day_colour_picked"]

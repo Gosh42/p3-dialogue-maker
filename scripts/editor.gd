@@ -119,6 +119,10 @@ func _on_weekday_selected(index: int) -> void:
 	screen.set_weekday(index)
 
 
+func _on_holiday_toggled(toggled_on: bool) -> void:
+	screen.set_holiday(toggled_on)
+
+
 func _on_moon_phase_changed(value: float) -> void:
 	screen.set_moon_phase(30 - value)
 

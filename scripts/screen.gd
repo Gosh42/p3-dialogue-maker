@@ -26,6 +26,9 @@ const CORNER_BLUE_PORTABLE: Color = Color(0x67bbffff)
 const CORNER_PINK: Color = Color(0xf898b3ff)
 const CORNER_GREEN: Color = Color(0x79fe8cff)
 const CORNER_GREEN_PORTABLE: Color = Color(0x2eb05aff)
+const HOLIDAY_RED: Color = Color(0x904058ff)
+const SATURDAY_BLUE: Color = Color(0x0d558dff)
+
 var current_colour: Color
 
 enum Daytimes {
@@ -35,11 +38,17 @@ enum Daytimes {
 	DARK_HOUR,		UNKNOWN
 }
 
+enum WeekdayModes {
+	NORMAL, SATURDAY, HOLIDAY, QUESTION_MARK
+}
+var weekday_mode: WeekdayModes = WeekdayModes.NORMAL
+var force_holiday: bool = false
+
 var digits_ones: Array[Texture2D]
 var digits_tens: Array[Texture2D]
 var digits_month_ones: Array[Texture2D]
 var question_mark_digit: Texture2D
-var weekdays: Array[Texture2D]
+var weekday_textures: Array[Texture2D]
 var current_month: int
 var current_day: int
 
@@ -61,7 +70,7 @@ func _ready() -> void:
 	question_mark_digit = preload("res://images/ui/date_numbers/question_mark.png")
 	
 	for s: String in ["M", "Tu", "W", "Th", "F", "Sa", "Su", "question_mark_weekday"]:
-		weekdays.append(load("res://images/ui/date_numbers/%s.png" % s))
+		weekday_textures.append(load("res://images/ui/date_numbers/%s.png" % s))
 
 # =================== NAME AND DIALOGUE ====================== #
 
@@ -110,22 +119,39 @@ func set_day(day: int) -> void:
 
 
 func set_weekday(index: int) -> void:
-	weekday.texture = weekdays[index]
+	if index > -1:
+		weekday.texture = weekday_textures[index]
 	
-	if index == 7: # question mark
+	if weekday.texture == weekday_textures[7]: # question mark
+		weekday_mode = WeekdayModes.QUESTION_MARK
 		month_tens.hide()
 		day_tens.hide()
 		
 		month_ones.texture = question_mark_digit
 		day_ones.texture = question_mark_digit
-		change_corner_colour(current_colour)
-	elif not month_tens.visible:
-		month_tens.show()
-		day_tens.show()
+		change_weekday_colour()
+	else:
+		if weekday_mode == WeekdayModes.QUESTION_MARK:
+			month_tens.show()
+			day_tens.show()
+			
+			set_month(current_month)
+			set_day(current_day)
 		
-		set_month(current_month)
-		set_day(current_day)
-		change_corner_colour(current_colour)
+		# sundays and holidays
+		if weekday.texture == weekday_textures[6] or force_holiday:
+			weekday_mode = WeekdayModes.HOLIDAY
+		elif weekday.texture == weekday_textures[5]: # saturday
+			weekday_mode = WeekdayModes.SATURDAY
+		else:
+			weekday_mode = WeekdayModes.NORMAL
+		
+		change_weekday_colour()
+
+
+func set_holiday(value: bool) -> void:
+	force_holiday = value
+	set_weekday(-1)
 
 
 func set_moon_phase(days_until_full: int) -> void:
@@ -163,21 +189,44 @@ func change_corner_colour(colour: Color) -> void:
 	corner.modulate = colour
 	
 	var digit_colour: Color
-	var weekday_colour: Color
 	
-	if month_tens.visible:
-		digit_colour = Color.from_hsv(colour.h, colour.s, colour.v * 0.2)
-		weekday_colour = Color.from_hsv(colour.h, colour.s * 0.333333, colour.v * 0.333333)
-	else:
+	if weekday_mode == WeekdayModes.QUESTION_MARK:
 		digit_colour = Color.from_hsv(colour.h, colour.s * 0.666667, colour.v * 0.333333)
-		weekday_colour = digit_colour
+	else:
+		digit_colour = Color.from_hsv(colour.h, colour.s, colour.v * 0.2)
+	
+	change_weekday_colour()
 		
 	for digit: TextureRect in [month_tens, month_ones, day_tens, day_ones]:
 		digit.modulate = digit_colour
 		
 	slash.modulate = Color.from_hsv(colour.h, colour.s * 0.666667, colour.v * 0.25)
 	dot.modulate = Color.from_hsv(colour.h, colour.s * 0.7, colour.v * 0.333333)
-	weekday.modulate = weekday_colour
 	
 	next_tens.modulate = colour
 	next_ones.modulate = colour
+
+
+func change_weekday_colour() -> void:
+	var weekday_colour: Color
+	var colour: Color = corner.modulate
+	
+	match weekday_mode:
+		WeekdayModes.NORMAL:
+			weekday_colour = Color.from_hsv(colour.h, colour.s * 0.333333, colour.v * 0.333333)
+		WeekdayModes.SATURDAY:
+			weekday_colour = Color.from_hsv(
+				(SATURDAY_BLUE.h * 5 + colour.h) * 0.166667,
+				SATURDAY_BLUE.s,
+				SATURDAY_BLUE.v
+			)
+		WeekdayModes.HOLIDAY:
+			weekday_colour = Color.from_hsv(
+				(HOLIDAY_RED.h * 3 + colour.h) * 0.25,
+				colour.s * 0.5,
+				colour.v * 0.4
+			)
+		WeekdayModes.QUESTION_MARK:
+			weekday_colour = month_tens.modulate
+	
+	weekday.modulate = weekday_colour
