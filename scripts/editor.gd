@@ -6,6 +6,10 @@ extends Control
 @onready var screen: Screen = %Screen
 @onready var dialogue_edit: TextEdit = %DialogueEdit
 
+@onready var choice_spin_box: SpinBox = %ChoiceSpinBox
+@onready var quotes_check: CheckButton = %QuotesCheck
+@onready var choice_3_edit: LineEdit = %Choice3Edit
+
 @onready var time_select: OptionButton = %TimeSelection
 @onready var month_spin_box: SpinBox = %MonthSpinBox
 @onready var day_spin_box: SpinBox = %DaySpinBox
@@ -19,6 +23,11 @@ var colour_index: int = 0
 
 func _ready() -> void:
 	var time_dict: Dictionary = Time.get_datetime_dict_from_system()
+	
+	screen.toggle_choice_textbox(false)
+	screen.toggle_third_choice(false)
+	screen.select_choice(0)
+	screen.toggle_quotes(true)
 	
 	var month: int = time_dict["month"]
 	month_spin_box.value = month
@@ -70,6 +79,55 @@ func _on_text_edit_text_changed() -> void:
 
 func _on_arrow_check_toggled(toggled_on: bool) -> void:
 	screen.toggle_arrow(toggled_on)
+
+
+func _on_answer_toggled(toggled_on: bool) -> void:
+	screen.toggle_choice_textbox(toggled_on)
+
+
+func _on_third_choice_toggled(toggled_on: bool) -> void:
+	var selection: int
+	
+	if toggled_on:
+		choice_spin_box.max_value = 3
+		selection = choice_spin_box.value
+		choice_3_edit.show()
+	else:
+		choice_spin_box.max_value = 2
+		
+		selection = min(choice_spin_box.value, 2)
+		choice_spin_box.value = selection
+		choice_3_edit.hide()
+	
+	screen.toggle_third_choice(toggled_on)
+	screen.select_choice(selection - 1)
+
+
+func _on_selected_choice_changed(value: float) -> void:
+	if value > choice_spin_box.max_value:
+		choice_spin_box.value = choice_spin_box.min_value
+	elif value < choice_spin_box.min_value:
+		choice_spin_box.value = choice_spin_box.max_value
+	else:
+		screen.select_choice(int(value) - 1)
+
+
+
+func _on_quotes_toggled(toggled_on: bool) -> void:
+	screen.toggle_quotes(toggled_on)
+
+
+
+func _on_choice_1_text_changed(new_text: String) -> void:
+	screen.set_choice_text(0, new_text)
+
+
+func _on_choice_2_text_changed(new_text: String) -> void:
+	screen.set_choice_text(1, new_text)
+
+
+func _on_choice_3_text_changed(new_text: String) -> void:
+	screen.set_choice_text(2, new_text)
 
 # =================== TIME SELECTION ====================== #
 
