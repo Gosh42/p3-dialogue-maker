@@ -1,14 +1,6 @@
-extends Control
-
-@onready var viewport_texture: TextureRect = %ViewportTexture
-@onready var char_select: OptionButton = %CharSelection
+extends Node
 
 @onready var screen: Screen = %Screen
-@onready var dialogue_edit: TextEdit = %DialogueEdit
-
-@onready var choice_spin_box: SpinBox = %ChoiceSpinBox
-@onready var quotes_check: CheckButton = %QuotesCheck
-@onready var choice_3_edit: LineEdit = %Choice3Edit
 
 @onready var time_select: OptionButton = %TimeSelection
 @onready var month_spin_box: SpinBox = %MonthSpinBox
@@ -16,18 +8,16 @@ extends Control
 @onready var weekday_select: OptionButton = %WeekdaySelection
 
 @onready var day_colour_select: OptionButton = %DayColourSelection
-
 var custom_colour: Color = Color.WHITE
 var colour_index: int = 0
 
+# ====================== INITIAL SETUP ====================== #
 
 func _ready() -> void:
-	var time_dict: Dictionary = Time.get_datetime_dict_from_system()
+	# Setting date and weekday based on system date
 	
-	screen.toggle_choice_textbox(false)
-	screen.toggle_third_choice(false)
-	screen.select_choice(0)
-	screen.toggle_quotes(true)
+	# Godot 4.4 full release with typed dictionaries when???
+	var time_dict: Dictionary = Time.get_datetime_dict_from_system()
 	
 	var month: int = time_dict["month"]
 	month_spin_box.value = month
@@ -42,7 +32,8 @@ func _ready() -> void:
 	weekday_select.select(weekday)
 	screen.set_weekday(weekday)
 	
-	# time label ("Afternoon", etc)
+	# Picking a time label based on system time
+	
 	var hour: int = time_dict["hour"]
 	var minutes: int = time_dict["minute"]
 	var hour_index: int = -1
@@ -58,78 +49,13 @@ func _ready() -> void:
 	
 	time_select.select(hour_index)
 	screen.set_daytime(hour_index)
+	
+	# Setting the moon phase to whatever because I can't be bothered
+	# to come up with a good way to "calculate" it
 	screen.set_moon_phase(30)
 
+# ====================== DATE AND TIME ====================== #
 
-func _on_screenshot_btn_button_down() -> void:
-	await RenderingServer.frame_post_draw
-	
-	var image: Image = viewport_texture.texture.get_image()
-	image.save_png("res://images/yeah.png")
-
-# =================== NAME AND DIALOGUE ====================== #
-
-func _on_name_edit_text_changed(new_text: String) -> void:
-	screen.set_name_text(new_text)
-
-
-func _on_text_edit_text_changed() -> void:
-	screen.set_dialogue_text(dialogue_edit.text)
-
-
-func _on_arrow_check_toggled(toggled_on: bool) -> void:
-	screen.toggle_arrow(toggled_on)
-
-
-func _on_answer_toggled(toggled_on: bool) -> void:
-	screen.toggle_choice_textbox(toggled_on)
-
-
-func _on_third_choice_toggled(toggled_on: bool) -> void:
-	var selection: int
-	
-	if toggled_on:
-		choice_spin_box.max_value = 3
-		selection = choice_spin_box.value
-		choice_3_edit.show()
-	else:
-		choice_spin_box.max_value = 2
-		
-		selection = min(choice_spin_box.value, 2)
-		choice_spin_box.value = selection
-		choice_3_edit.hide()
-	
-	screen.toggle_third_choice(toggled_on)
-	screen.select_choice(selection - 1)
-
-
-func _on_selected_choice_changed(value: float) -> void:
-	if value > choice_spin_box.max_value:
-		choice_spin_box.value = choice_spin_box.min_value
-	elif value < choice_spin_box.min_value:
-		choice_spin_box.value = choice_spin_box.max_value
-	else:
-		screen.select_choice(int(value) - 1)
-
-
-
-func _on_quotes_toggled(toggled_on: bool) -> void:
-	screen.toggle_quotes(toggled_on)
-
-
-
-func _on_choice_1_text_changed(new_text: String) -> void:
-	screen.set_choice_text(0, new_text)
-
-
-func _on_choice_2_text_changed(new_text: String) -> void:
-	screen.set_choice_text(1, new_text)
-
-
-func _on_choice_3_text_changed(new_text: String) -> void:
-	screen.set_choice_text(2, new_text)
-
-# =================== TIME SELECTION ====================== #
 func _on_corner_toggled(toggled_on: bool) -> void:
 	screen.toggle_corner(toggled_on)
 	
@@ -187,11 +113,11 @@ func _on_holiday_toggled(toggled_on: bool) -> void:
 func _on_moon_phase_changed(value: float) -> void:
 	screen.set_moon_phase(30 - value)
 
-# =================== COLOUR SELECTION ====================== #
+# ====================== COLOUR SELECTION ====================== #
 
 func _on_day_colour_selected(index: int) -> void:
 	colour_index = index
-	# last always will be custom. this is a bad way to do this but i don't care
+	# Last always will be custom. Probably a bad way to do this but I don't care
 	if index < day_colour_select.item_count - 1:
 		screen.choose_colour(index)
 	else:

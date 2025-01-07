@@ -1,7 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://pwqpmp3gqsni"]
+[gd_scene load_steps=8 format=3 uid="uid://pwqpmp3gqsni"]
 
-[ext_resource type="Script" path="res://scripts/editor.gd" id="1_rj01a"]
 [ext_resource type="PackedScene" uid="uid://d2dfffc8m7lxh" path="res://scenes/screen.tscn" id="1_ybar2"]
+[ext_resource type="Script" path="res://scripts/ui_character.gd" id="3_1pi5c"]
+[ext_resource type="Script" path="res://scripts/ui_dialogue.gd" id="3_dwsvi"]
+[ext_resource type="Script" path="res://scripts/ui_corner.gd" id="4_8r5i6"]
+[ext_resource type="Script" path="res://scripts/ui_save.gd" id="5_c6br4"]
+
+[sub_resource type="GDScript" id="GDScript_mlfj0"]
+script/source = "extends Control
+"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qt6s1"]
 viewport_path = NodePath("SubViewport")
@@ -14,7 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-script = ExtResource("1_rj01a")
+script = SubResource("GDScript_mlfj0")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -51,17 +58,15 @@ layout_mode = 2
 size_flags_vertical = 3
 current_tab = 1
 
-[node name="Character" type="Control" parent="HSplitContainer/VBoxContainer/TabContainer"]
+[node name="Character" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("3_1pi5c")
 metadata/_tab_index = 0
 
 [node name="CharSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_top = 26.0
-offset_right = 628.0
-offset_bottom = 57.0
 selected = 0
 item_count = 1
 popup/item_0/text = "TODO: CHARACTER SELECT"
@@ -69,6 +74,7 @@ popup/item_0/text = "TODO: CHARACTER SELECT"
 [node name="Dialogue" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+script = ExtResource("3_dwsvi")
 metadata/_tab_index = 1
 
 [node name="NameEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
@@ -141,6 +147,7 @@ placeholder_text = "Choice 3"
 [node name="Time and date" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("4_8r5i6")
 metadata/_tab_index = 2
 
 [node name="CornerCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/TabContainer/Time and date"]
@@ -270,27 +277,34 @@ size_flags_horizontal = 3
 text = "COLOR!!"
 color = Color(1, 1, 1, 1)
 
-[node name="ScreenshotBtn" type="Button" parent="HSplitContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
-text = "Save screenshot"
+script = ExtResource("5_c6br4")
 
-[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NameEdit" to="." method="_on_name_edit_text_changed"]
-[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/DialogueEdit" to="." method="_on_text_edit_text_changed"]
-[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/ArrowCheck" to="." method="_on_arrow_check_toggled"]
-[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerCheck" to="." method="_on_answer_toggled"]
-[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/HBoxContainer3/ThirdChoiceCheck" to="." method="_on_third_choice_toggled"]
-[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/HBoxContainer3/ChoiceSpinBox" to="." method="_on_selected_choice_changed"]
-[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/QuotesCheck" to="." method="_on_quotes_toggled"]
-[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/Choice1Edit" to="." method="_on_choice_1_text_changed"]
-[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/Choice2Edit" to="." method="_on_choice_2_text_changed"]
-[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/Choice3Edit" to="." method="_on_choice_3_text_changed"]
-[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/CornerCheck" to="." method="_on_corner_toggled"]
-[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/TimeSelection" to="." method="_on_time_selected"]
-[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer2/MonthSpinBox" to="." method="_on_month_changed"]
-[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer2/DaySpinBox" to="." method="_on_day_changed"]
-[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer2/WeekdaySelection" to="." method="_on_weekday_selected"]
-[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer2/HolidayCheck" to="." method="_on_holiday_toggled"]
-[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/MoonPhaseSlider" to="." method="_on_moon_phase_changed"]
-[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer/DayColourSelection" to="." method="_on_day_colour_selected"]
-[connection signal="color_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer/DayColourPicker" to="." method="_on_day_colour_picked"]
-[connection signal="button_down" from="HSplitContainer/VBoxContainer/ScreenshotBtn" to="." method="_on_screenshot_btn_button_down"]
+[node name="SaveImageButton" type="Button" parent="HSplitContainer/VBoxContainer/Control"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 628.0
+offset_bottom = 35.0
+text = "Save image as file"
+
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NameEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_name_changed"]
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/DialogueEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_dialogue_changed"]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/ArrowCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_arrow_toggled"]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_answer_toggled"]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/HBoxContainer3/ThirdChoiceCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_third_choice_toggled"]
+[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/HBoxContainer3/ChoiceSpinBox" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_selected_choice_changed"]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/QuotesCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_quotes_toggled"]
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/Choice1Edit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_choice_1_text_changed"]
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/Choice2Edit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_choice_2_text_changed"]
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/Choice3Edit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_choice_3_text_changed"]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/CornerCheck" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_corner_toggled"]
+[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/TimeSelection" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_time_selected"]
+[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer2/MonthSpinBox" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_month_changed"]
+[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer2/DaySpinBox" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_day_changed"]
+[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer2/WeekdaySelection" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_weekday_selected"]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer2/HolidayCheck" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_holiday_toggled"]
+[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/MoonPhaseSlider" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_moon_phase_changed"]
+[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer/DayColourSelection" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_day_colour_selected"]
+[connection signal="color_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer/DayColourPicker" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_day_colour_picked"]
+[connection signal="button_down" from="HSplitContainer/VBoxContainer/Control/SaveImageButton" to="HSplitContainer/VBoxContainer/Control" method="_on_save_button_down"]
