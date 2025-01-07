@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/screen.gd" id="1_6at0b"]
 [ext_resource type="Texture2D" uid="uid://caubjow1e6lea" path="res://images/ui/example.png" id="1_ylqks"]
 [ext_resource type="Texture2D" uid="uid://cxa484vpt2kh7" path="res://images/ui/I_MOON_00.SPR_9.png" id="2_lmoud"]
+[ext_resource type="Texture2D" uid="uid://b24nypvutkkcs" path="res://images/characters/protagonist/makoto_yuki/winter_uniform.png" id="3_4l80r"]
 [ext_resource type="Texture2D" uid="uid://cmadhojajy5n0" path="res://images/ui/I_MOON_00.SPR_8.png" id="3_d8yyf"]
-[ext_resource type="Texture2D" uid="uid://bvelkuk2ilwl7" path="res://images/characters/aigis/school/normal.png" id="3_gfo1f"]
 [ext_resource type="Texture2D" uid="uid://p5gnikede6cp" path="res://images/ui/textbox.png" id="4_0xtrg"]
 [ext_resource type="LabelSettings" uid="uid://p3mgberf6nax" path="res://fonts/nametag_label_settings.tres" id="5_77smh"]
 [ext_resource type="Texture2D" uid="uid://bnt2ti1do4bgy" path="res://images/ui/daytimes.png" id="6_b1318"]
@@ -263,7 +263,7 @@ offset_bottom = 199.6
 script = ExtResource("1_6at0b")
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color(0.823529, 0.286275, 0.372549, 1)
+modulate = Color(0.7, 0.126, 0.221667, 1)
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 448.0
@@ -273,11 +273,13 @@ stretch_mode = 6
 metadata/_edit_lock_ = true
 
 [node name="Character" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 256.0
 offset_right = 768.0
 offset_bottom = 512.0
-texture = ExtResource("3_gfo1f")
+texture = ExtResource("3_4l80r")
+expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="EntireCorner" type="Control" parent="."]
@@ -555,7 +557,7 @@ offset_top = 338.0
 offset_right = 151.0
 offset_bottom = 399.0
 scale = Vector2(0.65, 0.5)
-text = "Aigis"
+text = "Character name"
 label_settings = ExtResource("5_77smh")
 max_lines_visible = 1
 metadata/_edit_lock_ = true
@@ -568,7 +570,7 @@ offset_top = 364.0
 offset_right = 789.0
 offset_bottom = 484.0
 scale = Vector2(0.68, 0.5)
-text = "I comprehend!"
+text = "Dialogue"
 label_settings = ExtResource("6_yxv5q")
 autowrap_mode = 3
 max_lines_visible = 3

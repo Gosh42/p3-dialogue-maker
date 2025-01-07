@@ -1,6 +1,8 @@
 class_name Screen
 extends Control
 
+@onready var char_texture: TextureRect = %Character
+
 @onready var name_label: Label = %NameLabel
 @onready var dialogue_label: Label = %DialogueLabel
 @onready var arrow: TextureRect = %Arrow
@@ -87,6 +89,11 @@ func _ready() -> void:
 	
 	for s: String in ["M", "Tu", "W", "Th", "F", "Sa", "Su", "question_mark_weekday"]:
 		weekday_textures.append(load("res://images/ui/date_numbers/%s.png" % s))
+
+# =================== CHARACTER PORTRAIT ====================== #
+
+func set_sprite(image: Texture) -> void:
+	char_texture.texture = image
 
 # =================== NAME AND DIALOGUE ====================== #
 

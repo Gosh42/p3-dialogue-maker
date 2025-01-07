@@ -1,14 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://pwqpmp3gqsni"]
+[gd_scene load_steps=7 format=3 uid="uid://pwqpmp3gqsni"]
 
 [ext_resource type="PackedScene" uid="uid://d2dfffc8m7lxh" path="res://scenes/screen.tscn" id="1_ybar2"]
 [ext_resource type="Script" path="res://scripts/ui_character.gd" id="3_1pi5c"]
 [ext_resource type="Script" path="res://scripts/ui_dialogue.gd" id="3_dwsvi"]
 [ext_resource type="Script" path="res://scripts/ui_corner.gd" id="4_8r5i6"]
 [ext_resource type="Script" path="res://scripts/ui_save.gd" id="5_c6br4"]
-
-[sub_resource type="GDScript" id="GDScript_mlfj0"]
-script/source = "extends Control
-"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qt6s1"]
 viewport_path = NodePath("SubViewport")
@@ -21,13 +17,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-script = SubResource("GDScript_mlfj0")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(640, 448)
 size_2d_override = Vector2i(640, 448)
+size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="Screen" parent="SubViewport" instance=ExtResource("1_ybar2")]
@@ -56,10 +52,9 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 
 [node name="Character" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("3_1pi5c")
 metadata/_tab_index = 0
@@ -67,11 +62,17 @@ metadata/_tab_index = 0
 [node name="CharSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
 unique_name_in_owner = true
 layout_mode = 2
-selected = 0
-item_count = 1
-popup/item_0/text = "TODO: CHARACTER SELECT"
+
+[node name="CostumeSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SpriteSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="Dialogue" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 4
 script = ExtResource("3_dwsvi")
@@ -288,6 +289,9 @@ offset_right = 628.0
 offset_bottom = 35.0
 text = "Save image as file"
 
+[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Character/CharSelection" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_character_selected"]
+[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Character/CostumeSelection" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_costume_selected"]
+[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Character/SpriteSelection" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_sprite_selected"]
 [connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NameEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_name_changed"]
 [connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/DialogueEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_dialogue_changed"]
 [connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/ArrowCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_arrow_toggled"]
