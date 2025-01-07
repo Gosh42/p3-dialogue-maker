@@ -130,6 +130,9 @@ func _on_choice_3_text_changed(new_text: String) -> void:
 	screen.set_choice_text(2, new_text)
 
 # =================== TIME SELECTION ====================== #
+func _on_corner_toggled(toggled_on: bool) -> void:
+	screen.toggle_corner(toggled_on)
+	
 
 func _on_time_selected(index: int) -> void:
 	screen.set_daytime(index)

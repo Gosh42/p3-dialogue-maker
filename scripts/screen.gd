@@ -15,7 +15,9 @@ extends Control
 var using_quotes_for_answers: bool = true
 var choice_texts: Array[String] = ["Choice 1", "Choice 2", "Choice 3"]
 
-@onready var corner: TextureRect = %Main
+@onready var entire_corner: Control = %EntireCorner
+
+@onready var corner_bg: TextureRect = %Main
 
 @onready var month_tens: TextureRect = %MonthTens
 @onready var month_ones: TextureRect = %MonthOnes
@@ -149,6 +151,9 @@ func set_choice_text(choice_i: int, text: String) -> void:
 		choices[choice_i].text = text
 
 # =================== TIME SELECTION ====================== #
+func toggle_corner(toggled_on: bool) -> void:
+	entire_corner.visible = toggled_on
+
 
 func set_daytime(index: int) -> void:
 	var daytime: Daytimes = Daytimes.values()[index]
@@ -249,7 +254,7 @@ func set_custom_colour(colour: Color) -> void:
 
 
 func change_corner_colour(colour: Color) -> void:
-	corner.modulate = colour
+	corner_bg.modulate = colour
 	
 	var digit_colour: Color
 	
@@ -272,7 +277,7 @@ func change_corner_colour(colour: Color) -> void:
 
 func change_weekday_colour() -> void:
 	var weekday_colour: Color
-	var colour: Color = corner.modulate
+	var colour: Color = corner_bg.modulate
 	
 	match weekday_mode:
 		WeekdayModes.NORMAL:
