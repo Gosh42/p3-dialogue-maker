@@ -5,11 +5,15 @@ extends Node
 @onready var costume_select: OptionButton = %CostumeSelection
 @onready var sprite_select: OptionButton = %SpriteSelection
 
+@onready var position_slider: HSlider = %PositionSlider
+@onready var flip_check: CheckButton = %FlipCheck
+
 var character_names: PackedStringArray
 var costume_names: PackedStringArray
 
 var sprite_images: Array[Texture]
 
+# ====================== INITIAL SETUP ====================== #
 
 func _ready() -> void:
 	var dir: DirAccess = DirAccess.open("res://images/characters")
@@ -23,6 +27,7 @@ func _ready() -> void:
 	char_select.select(0)
 	_on_character_selected(0)
 
+# ====================== CHARACTER SELECTION ====================== #
 
 func _on_character_selected(index: int) -> void:
 	costume_names.clear()
@@ -43,8 +48,6 @@ func _on_character_selected(index: int) -> void:
 			
 		for costume: String in costume_names:
 			costume_select.add_item(costume.capitalize())
-		
-		print(costume_names)
 		
 		costume_select.select(0)
 		_on_costume_selected(0)
@@ -83,3 +86,17 @@ func _on_costume_selected(index: int) -> void:
 
 func _on_sprite_selected(index: int) -> void:
 	screen.set_sprite(sprite_images[index])
+
+# ====================== POSITIONING ====================== #
+
+func _on_position_changed(value: float) -> void:
+	screen.set_pos(value)
+
+
+func _on_position_snapped(value: float) -> void:
+	position_slider.value = value
+	flip_check.button_pressed = value < 0
+
+
+func _on_flip_toggled(toggled_on: bool) -> void:
+	screen.set_flip(toggled_on)

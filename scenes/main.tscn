@@ -71,6 +71,39 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="== ANSWER ==" type="HSeparator" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
+layout_mode = 2
+
+[node name="PositionSlider" type="HSlider" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = -128.0
+max_value = 256.0
+value = 256.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
+layout_mode = 2
+
+[node name="LeftButton" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<< Left"
+
+[node name="MidButton" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "= Middle ="
+
+[node name="RightButton" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Right >>"
+
+[node name="FlipCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Flip character"
+
 [node name="Dialogue" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
@@ -292,6 +325,11 @@ text = "Save image as file"
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Character/CharSelection" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_character_selected"]
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Character/CostumeSelection" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_costume_selected"]
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Character/SpriteSelection" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_sprite_selected"]
+[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Character/PositionSlider" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_position_changed"]
+[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer/LeftButton" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_position_snapped" binds= [-128.0]]
+[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer/MidButton" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_position_snapped" binds= [80.0]]
+[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer/RightButton" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_position_snapped" binds= [256.0]]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Character/FlipCheck" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_flip_toggled"]
 [connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NameEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_name_changed"]
 [connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/DialogueEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_dialogue_changed"]
 [connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/ArrowCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_arrow_toggled"]

@@ -95,6 +95,14 @@ func _ready() -> void:
 func set_sprite(image: Texture) -> void:
 	char_texture.texture = image
 
+
+func set_flip(flip: bool) -> void:
+	char_texture.flip_h = flip
+
+
+func set_pos(pos: float) -> void:
+	char_texture.position.x = pos
+
 # =================== NAME AND DIALOGUE ====================== #
 
 func set_name_text(text: String) -> void:
