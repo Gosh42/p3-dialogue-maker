@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf4w13wlesh4n"]
+
+[ext_resource type="Texture2D" uid="uid://dhb70monxihmm" path="res://images/characters/aigis/normal/normal.png" id="1_h2v8q"]
+
+[node name="Character" type="TextureRect"]
+offset_left = 256.0
+offset_right = 768.0
+offset_bottom = 512.0
+texture = ExtResource("1_h2v8q")
+expand_mode = 1
+metadata/_edit_lock_ = true

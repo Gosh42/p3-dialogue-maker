@@ -1,6 +1,6 @@
 extends Node
 
-@onready var screen: Screen = %Screen
+var dialogue: DialogueController
 
 @onready var dialogue_edit: TextEdit = %DialogueEdit
 
@@ -11,28 +11,31 @@ extends Node
 # =================== INITIAL SETUP ====================== #
 
 func _ready() -> void:
-	screen.toggle_choice_textbox(false)
-	screen.toggle_third_choice(false)
-	screen.select_choice(0)
-	screen.toggle_quotes(true)
+	var screen: ScreenControlGetter = %Screen
+	dialogue = screen.get_dialogue_controller()
+	
+	dialogue.toggle_choice_textbox(false)
+	dialogue.toggle_third_choice(false)
+	dialogue.select_choice(0)
+	dialogue.toggle_quotes(true)
 
 # ====================== DIALOGUE BOX ====================== #
 
 func _on_name_changed(new_text: String) -> void:
-	screen.set_name_text(new_text)
+	dialogue.set_name_text(new_text)
 
 
 func _on_dialogue_changed() -> void:
-	screen.set_dialogue_text(dialogue_edit.text)
+	dialogue.set_dialogue_text(dialogue_edit.text)
 
 
 func _on_arrow_toggled(toggled_on: bool) -> void:
-	screen.toggle_arrow(toggled_on)
+	dialogue.toggle_arrow(toggled_on)
 
 # ====================== ANSWER BOX ====================== #
 
 func _on_answer_toggled(toggled_on: bool) -> void:
-	screen.toggle_choice_textbox(toggled_on)
+	dialogue.toggle_choice_textbox(toggled_on)
 
 
 func _on_third_choice_toggled(toggled_on: bool) -> void:
@@ -49,8 +52,8 @@ func _on_third_choice_toggled(toggled_on: bool) -> void:
 		choice_spin_box.value = selection
 		choice_3_edit.hide()
 	
-	screen.toggle_third_choice(toggled_on)
-	screen.select_choice(selection - 1)
+	dialogue.toggle_third_choice(toggled_on)
+	dialogue.select_choice(selection - 1)
 
 
 func _on_selected_choice_changed(value: float) -> void:
@@ -59,20 +62,20 @@ func _on_selected_choice_changed(value: float) -> void:
 	elif value < choice_spin_box.min_value:
 		choice_spin_box.value = choice_spin_box.max_value
 	else:
-		screen.select_choice(int(value) - 1)
+		dialogue.select_choice(int(value) - 1)
 
 
 func _on_quotes_toggled(toggled_on: bool) -> void:
-	screen.toggle_quotes(toggled_on)
+	dialogue.toggle_quotes(toggled_on)
 
 
 func _on_choice_1_text_changed(new_text: String) -> void:
-	screen.set_choice_text(0, new_text)
+	dialogue.set_choice_text(0, new_text)
 
 
 func _on_choice_2_text_changed(new_text: String) -> void:
-	screen.set_choice_text(1, new_text)
+	dialogue.set_choice_text(1, new_text)
 
 
 func _on_choice_3_text_changed(new_text: String) -> void:
-	screen.set_choice_text(2, new_text)
+	dialogue.set_choice_text(2, new_text)

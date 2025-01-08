@@ -1,6 +1,7 @@
 extends Node
 
-@onready var screen: Screen = %Screen
+var char_ctrl: CharacterController
+
 @onready var char_select: OptionButton = %CharSelection
 @onready var costume_select: OptionButton = %CostumeSelection
 @onready var sprite_select: OptionButton = %SpriteSelection
@@ -16,6 +17,9 @@ var sprite_images: Array[Texture]
 # ====================== INITIAL SETUP ====================== #
 
 func _ready() -> void:
+	var screen: ScreenControlGetter = %Screen
+	char_ctrl = screen.get_character_controller()
+	
 	var dir: DirAccess = DirAccess.open("res://images/characters")
 	
 	# Adding characters
@@ -85,12 +89,12 @@ func _on_costume_selected(index: int) -> void:
 
 
 func _on_sprite_selected(index: int) -> void:
-	screen.set_sprite(sprite_images[index])
+	char_ctrl.set_sprite(sprite_images[index])
 
 # ====================== POSITIONING ====================== #
 
 func _on_position_changed(value: float) -> void:
-	screen.set_pos(value)
+	char_ctrl.set_pos(value)
 
 
 func _on_position_snapped(value: float) -> void:
@@ -99,4 +103,4 @@ func _on_position_snapped(value: float) -> void:
 
 
 func _on_flip_toggled(toggled_on: bool) -> void:
-	screen.set_flip(toggled_on)
+	char_ctrl.set_flip(toggled_on)
