@@ -3,4 +3,5 @@ winter.png
 summer_uniform.png
 summer.png
 kyoto.png
+yukata.png
 beach.png

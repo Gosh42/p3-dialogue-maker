@@ -1,0 +1,10 @@
+normal
+normal_(armband)
+school
+ocean
+armour
+armour_(armband)
+kyoto
+yukata1
+yukata2
+no_ribbon
