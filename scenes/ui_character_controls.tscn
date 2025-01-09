@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://cda8j05imxn84"]
+
+[ext_resource type="Script" path="res://scripts/ui_character.gd" id="1_gl6li"]
+
+[node name="CharacterControls" type="VBoxContainer"]
+script = ExtResource("1_gl6li")
+
+[node name="CharSelection" type="OptionButton" parent="."]
+layout_mode = 2
+
+[node name="CostumeSelection" type="OptionButton" parent="."]
+layout_mode = 2
+
+[node name="SpriteSelection" type="OptionButton" parent="."]
+layout_mode = 2
+
+[node name="== ANSWER ==" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="PositionSlider" type="HSlider" parent="."]
+layout_mode = 2
+min_value = -256.0
+max_value = 384.0
+value = 256.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LeftButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<< Left"
+
+[node name="MidButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "= Middle ="
+
+[node name="RightButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Right >>"
+
+[node name="FlipCheck" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Flip character"
+
+[connection signal="item_selected" from="CharSelection" to="." method="_on_character_selected"]
+[connection signal="item_selected" from="CostumeSelection" to="." method="_on_costume_selected"]
+[connection signal="item_selected" from="SpriteSelection" to="." method="_on_sprite_selected"]
+[connection signal="value_changed" from="PositionSlider" to="." method="_on_position_changed"]
+[connection signal="pressed" from="HBoxContainer/LeftButton" to="." method="_on_position_snapped" binds= [-128.0]]
+[connection signal="pressed" from="HBoxContainer/MidButton" to="." method="_on_position_snapped" binds= [80.0]]
+[connection signal="pressed" from="HBoxContainer/RightButton" to="." method="_on_position_snapped" binds= [256.0]]
+[connection signal="toggled" from="FlipCheck" to="." method="_on_flip_toggled"]

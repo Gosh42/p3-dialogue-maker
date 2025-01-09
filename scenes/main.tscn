@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://pwqpmp3gqsni"]
 
 [ext_resource type="PackedScene" uid="uid://d2dfffc8m7lxh" path="res://scenes/screen.tscn" id="1_ybar2"]
-[ext_resource type="Script" path="res://scripts/ui_character.gd" id="3_1pi5c"]
+[ext_resource type="Script" path="res://scripts/ui_char_management.gd" id="2_8g786"]
 [ext_resource type="Script" path="res://scripts/ui_dialogue.gd" id="3_dwsvi"]
 [ext_resource type="Script" path="res://scripts/ui_corner.gd" id="4_8r5i6"]
 [ext_resource type="Script" path="res://scripts/ui_save.gd" id="5_c6br4"]
@@ -54,55 +54,33 @@ layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="Character" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
+[node name="Characters" type="ScrollContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
-script = ExtResource("3_1pi5c")
 metadata/_tab_index = 0
 
-[node name="CharSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="CostumeSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="SpriteSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="== ANSWER ==" type="HSeparator" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
-layout_mode = 2
-
-[node name="PositionSlider" type="HSlider" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
-unique_name_in_owner = true
-layout_mode = 2
-min_value = -128.0
-max_value = 256.0
-value = 256.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
-layout_mode = 2
-
-[node name="LeftButton" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Characters"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "<< Left"
+size_flags_vertical = 3
+script = ExtResource("2_8g786")
 
-[node name="MidButton" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "= Middle ="
-
-[node name="RightButton" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Right >>"
-
-[node name="FlipCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/TabContainer/Character"]
+[node name="CharContainer" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Flip character"
+theme_override_constants/separation = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer"]
+layout_mode = 2
+
+[node name="AddCharButton" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+"
+
+[node name="RemoveCharButton" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-"
 
 [node name="Dialogue" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
 visible = false
@@ -120,12 +98,15 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 text = "TODO:
-- character select, including none, navigator calls and changing position
-- background selection including none, possibly with a few defaults"
+- background selection including none, possibly with a few defaults
+- remaining characters
+- better save dialog
+- p3-styled ui theme"
 placeholder_text = "Type dialogue here.
 Can be up to three
 lines of text total."
 wrap_mode = 1
+scroll_vertical = 2.0
 
 [node name="ArrowCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
 layout_mode = 2
@@ -319,14 +300,8 @@ script = ExtResource("5_c6br4")
 layout_mode = 2
 text = "Save image as file"
 
-[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Character/CharSelection" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_character_selected"]
-[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Character/CostumeSelection" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_costume_selected"]
-[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Character/SpriteSelection" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_sprite_selected"]
-[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Character/PositionSlider" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_position_changed"]
-[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer/LeftButton" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_position_snapped" binds= [-128.0]]
-[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer/MidButton" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_position_snapped" binds= [80.0]]
-[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Character/HBoxContainer/RightButton" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_position_snapped" binds= [256.0]]
-[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Character/FlipCheck" to="HSplitContainer/VBoxContainer/TabContainer/Character" method="_on_flip_toggled"]
+[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer/HBoxContainer/AddCharButton" to="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer" method="_on_character_added"]
+[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer/HBoxContainer/RemoveCharButton" to="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer" method="_on_character_removed"]
 [connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NameEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_name_changed"]
 [connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/DialogueEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_dialogue_changed"]
 [connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/ArrowCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_arrow_toggled"]

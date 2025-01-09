@@ -1,35 +1,48 @@
+class_name CharacterControllerUI
 extends Node
 
 var char_ctrl: CharacterController
+var current: int
 
-@onready var char_select: OptionButton = %CharSelection
-@onready var costume_select: OptionButton = %CostumeSelection
-@onready var sprite_select: OptionButton = %SpriteSelection
+@onready var char_select: OptionButton
+@onready var costume_select: OptionButton
+@onready var sprite_select: OptionButton
 
-@onready var position_slider: HSlider = %PositionSlider
-@onready var flip_check: CheckButton = %FlipCheck
+@onready var position_slider: HSlider
+@onready var flip_check: CheckButton
 
 var character_names: PackedStringArray
 var costume_names: PackedStringArray
 
 var sprite_images: Array[Texture]
 
-# ====================== INITIAL SETUP ====================== #
+# ====================== SETUP AND REMOVAL ====================== #
 
-func _ready() -> void:
-	var screen: ScreenControlGetter = %Screen
-	char_ctrl = screen.get_character_controller()
-	
-	var dir: DirAccess = DirAccess.open("res://images/characters")
+# Workaround of not finding nodes before the class instance is added to a tree
+func setup(character_controller: CharacterController, index: int) -> void:
+	char_ctrl = character_controller
+	current = index
+	# Assigning node references
+	char_select = $CharSelection
+	costume_select = $CostumeSelection
+	sprite_select = $SpriteSelection
+	position_slider = $PositionSlider
+	flip_check = $FlipCheck
 	
 	# Adding characters
+	var dir: DirAccess = DirAccess.open("res://images/characters")
+	
 	character_names = dir.get_directories()
 	
 	for character: String in character_names:
 		char_select.add_item(character.capitalize())
 	
+	char_ctrl.create_character()
+	
+	print("yeah!!")
 	char_select.select(0)
 	_on_character_selected(0)
+
 
 # ====================== CHARACTER SELECTION ====================== #
 
@@ -89,12 +102,12 @@ func _on_costume_selected(index: int) -> void:
 
 
 func _on_sprite_selected(index: int) -> void:
-	char_ctrl.set_sprite(sprite_images[index])
+	char_ctrl.set_sprite(current, sprite_images[index])
 
 # ====================== POSITIONING ====================== #
 
 func _on_position_changed(value: float) -> void:
-	char_ctrl.set_pos(value)
+	char_ctrl.set_pos(current, value)
 
 
 func _on_position_snapped(value: float) -> void:
@@ -103,4 +116,4 @@ func _on_position_snapped(value: float) -> void:
 
 
 func _on_flip_toggled(toggled_on: bool) -> void:
-	char_ctrl.set_flip(toggled_on)
+	char_ctrl.set_flip(current, toggled_on)

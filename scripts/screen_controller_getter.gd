@@ -1,6 +1,7 @@
 class_name ScreenControlGetter
 extends Control
 
+
 func get_character_controller() -> CharacterController:
 	return $CharacterController
 
