@@ -55,7 +55,7 @@ func _ready() -> void:
 	
 	# Setting the moon phase to whatever because I can't be bothered
 	# to come up with a good way to "calculate" it
-	corner_ctrl.set_moon_phase(30)
+	corner_ctrl.set_moon_phase(randi() % 31)
 
 # ====================== DATE AND TIME ====================== #
 
