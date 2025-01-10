@@ -106,7 +106,6 @@ placeholder_text = "Type dialogue here.
 Can be up to three
 lines of text total."
 wrap_mode = 1
-scroll_vertical = 2.0
 
 [node name="ArrowCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
 layout_mode = 2

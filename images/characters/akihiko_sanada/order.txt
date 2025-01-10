@@ -1,0 +1,9 @@
+winter_uniform
+winter_uniform_(armband)
+summer_uniform
+winter
+summer
+haori
+flashback
+beach
+hot_springs
