@@ -67,6 +67,7 @@ func _on_character_selected(index: int) -> void:
 			costume_select.add_item(costume.capitalize())
 		
 		costume_select.select(0)
+		costume_select.visible = costume_select.item_count > 1
 		_on_costume_selected(0)
 
 
@@ -98,6 +99,7 @@ func _on_costume_selected(index: int) -> void:
 				costume_names[index] + "/" + sprite))
 		
 		sprite_select.select(0)
+		sprite_select.visible = sprite_select.item_count > 1
 		_on_sprite_selected(0)
 
 

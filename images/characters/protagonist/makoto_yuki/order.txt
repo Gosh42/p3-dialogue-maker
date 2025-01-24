@@ -4,3 +4,4 @@ summer_uniform.png
 summer.png
 kyoto.png
 beach.png
+winter_uniform_(placeholder).png

@@ -1,0 +1,7 @@
+normal.png
+smile.png
+mad.png
+shocked.png
+thinking.png
+tired.png
+blush.png

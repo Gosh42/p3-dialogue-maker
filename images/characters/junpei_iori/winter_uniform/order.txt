@@ -1,0 +1,10 @@
+normal.png
+smile.png
+confident.png
+mad.png
+sad.png
+surprised.png
+shocked.png
+tired.png
+tired_2.png
+blush.png

@@ -1,5 +1,5 @@
 class_name ScreenControlGetter
-extends Control
+extends Node
 
 
 func get_character_controller() -> CharacterController:

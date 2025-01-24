@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Node
 
 const character_ui: PackedScene = preload("res://scenes/ui_character_controls.tscn")
 var character_controller: CharacterController
