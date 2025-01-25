@@ -15,6 +15,7 @@ var character_names: PackedStringArray
 var costume_names: PackedStringArray
 
 var sprite_images: Array[Texture]
+var eye_images: Array[Texture]
 
 # ====================== SETUP AND REMOVAL ====================== #
 
@@ -74,6 +75,7 @@ func _on_character_selected(index: int) -> void:
 func _on_costume_selected(index: int) -> void:
 	sprite_select.clear()
 	sprite_images.clear()
+	eye_images.clear()
 	
 	var path: String = "res://images/characters/" + \
 		character_names[char_select.selected] + "/" + costume_names[index]
@@ -94,9 +96,20 @@ func _on_costume_selected(index: int) -> void:
 		
 		for sprite: String in sprite_names:
 			sprite_select.add_item(sprite.get_basename().capitalize())
-			sprite_images.append(load("res://images/characters/" + \
+			
+			var base_path: String = "res://images/characters/" + \
 				character_names[char_select.selected] +  "/" + \
-				costume_names[index] + "/" + sprite))
+				costume_names[index] + "/"
+			var eye_path: String = base_path + sprite.get_basename() + "-." + \
+				sprite.get_extension()
+				
+			sprite_images.append(load(base_path + sprite))
+			if ResourceLoader.exists(eye_path):
+				eye_images.append(load(eye_path))
+			else:
+				eye_images.append(null)
+			
+			print(len(sprite_images), " ", len(eye_images))
 		
 		sprite_select.select(0)
 		sprite_select.visible = sprite_select.item_count > 1
@@ -104,7 +117,7 @@ func _on_costume_selected(index: int) -> void:
 
 
 func _on_sprite_selected(index: int) -> void:
-	char_ctrl.set_sprite(current, sprite_images[index])
+	char_ctrl.set_sprite(current, sprite_images[index], eye_images[index])
 
 # ====================== POSITIONING ====================== #
 
@@ -119,3 +132,7 @@ func _on_position_snapped(value: float) -> void:
 
 func _on_flip_toggled(toggled_on: bool) -> void:
 	char_ctrl.set_flip(current, toggled_on)
+
+
+func _on_eyes_toggled(toggled_on: bool) -> void:
+	char_ctrl.toggle_eyes(current, toggled_on)

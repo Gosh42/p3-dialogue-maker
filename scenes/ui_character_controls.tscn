@@ -45,6 +45,10 @@ text = "Right >>"
 layout_mode = 2
 text = "Flip character"
 
+[node name="EyeCheck" type="CheckButton" parent="."]
+layout_mode = 2
+text = "Close eyes"
+
 [connection signal="item_selected" from="CharSelection" to="." method="_on_character_selected"]
 [connection signal="item_selected" from="CostumeSelection" to="." method="_on_costume_selected"]
 [connection signal="item_selected" from="SpriteSelection" to="." method="_on_sprite_selected"]
@@ -53,3 +57,4 @@ text = "Flip character"
 [connection signal="pressed" from="HBoxContainer/MidButton" to="." method="_on_position_snapped" binds= [80.0]]
 [connection signal="pressed" from="HBoxContainer/RightButton" to="." method="_on_position_snapped" binds= [256.0]]
 [connection signal="toggled" from="FlipCheck" to="." method="_on_flip_toggled"]
+[connection signal="toggled" from="EyeCheck" to="." method="_on_eyes_toggled"]

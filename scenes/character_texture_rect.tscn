@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cf4w13wlesh4n"]
+[gd_scene load_steps=3 format=3 uid="uid://cf4w13wlesh4n"]
 
 [ext_resource type="Texture2D" uid="uid://dhb70monxihmm" path="res://images/characters/aigis/normal/normal.png" id="1_h2v8q"]
+[ext_resource type="Texture2D" uid="uid://duox3b13utitf" path="res://images/characters/aigis/normal/normal-.png" id="2_cqj1b"]
 
 [node name="Character" type="TextureRect"]
 offset_left = 256.0
@@ -9,3 +10,16 @@ offset_bottom = 512.0
 texture = ExtResource("1_h2v8q")
 expand_mode = 1
 metadata/_edit_lock_ = true
+
+[node name="Eyes" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -146.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cqj1b")

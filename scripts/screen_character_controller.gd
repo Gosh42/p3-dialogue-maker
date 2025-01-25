@@ -19,14 +19,20 @@ func remove_last_character() -> void:
 	characters.resize(characters.size() - 1)
 
 
-func set_sprite(index: int, image: Texture) -> void:
+func set_sprite(index: int, image: Texture, eye_image: Texture) -> void:
 	if index < len(characters):
 		characters[index].texture = image
+		(characters[index].get_child(0) as TextureRect).texture = eye_image
+
+
+func toggle_eyes(index: int, toggled_on: bool) -> void:
+	(characters[index].get_child(0) as Control).visible = toggled_on
 
 
 func set_flip(index: int, flip: bool) -> void:
 	if index < len(characters):
 		characters[index].flip_h = flip
+		(characters[index].get_child(0) as TextureRect).flip_h = flip
 
 
 func set_pos(index: int, pos: float) -> void:
