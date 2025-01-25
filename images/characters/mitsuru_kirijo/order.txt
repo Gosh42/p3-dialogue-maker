@@ -4,6 +4,9 @@ summer_uniform
 winter
 summer
 haori
+yukata
+kimono
 beach
 hot_springs
-flashback
+flashback_(child)
+flashback_(teen)

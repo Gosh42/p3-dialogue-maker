@@ -1,0 +1,4 @@
+normal.png
+smile.png
+annoyed.png
+confused.png
