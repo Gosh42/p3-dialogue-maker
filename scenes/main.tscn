@@ -53,10 +53,9 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 
 [node name="Characters" type="ScrollContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -86,6 +85,7 @@ text = "-"
 
 [node name="Background" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 script = ExtResource("3_qdc1x")
 metadata/_tab_index = 1

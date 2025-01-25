@@ -22,7 +22,14 @@ func remove_last_character() -> void:
 func set_sprite(index: int, image: Texture, eye_image: Texture) -> void:
 	if index < len(characters):
 		characters[index].texture = image
-		(characters[index].get_child(0) as TextureRect).texture = eye_image
+		
+		var eyes: TextureRect = characters[index].get_child(0)
+		eyes.texture = eye_image
+
+
+func set_eye_height(index: int, eye_height: int) -> void:
+	var eyes: TextureRect = characters[index].get_child(0)
+	eyes.position.y = eye_height
 
 
 func toggle_eyes(index: int, toggled_on: bool) -> void:

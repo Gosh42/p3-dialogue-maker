@@ -16,6 +16,7 @@ var costume_names: PackedStringArray
 
 var sprite_images: Array[Texture]
 var eye_images: Array[Texture]
+var eye_height: int
 
 # ====================== SETUP AND REMOVAL ====================== #
 
@@ -63,7 +64,15 @@ func _on_character_selected(index: int) -> void:
 			file.close()
 		else:
 			costume_names = dir.get_directories()
-			
+		
+		if dir.file_exists("eye_height.txt"):
+			var file: FileAccess = FileAccess.open(path + "/eye_height.txt", FileAccess.READ)
+			eye_height = int(file.get_line())
+		else:
+			eye_height = 110
+		
+		char_ctrl.set_eye_height(current, eye_height)
+		
 		for costume: String in costume_names:
 			costume_select.add_item(costume.capitalize())
 		

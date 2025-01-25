@@ -4,4 +4,3 @@ smile.png
 angry.png
 surprised.png
 sad.png
-sad_(closed_eyes).png
