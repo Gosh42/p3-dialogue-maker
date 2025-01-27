@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcougivdu7iti"
-path="res://.godot/imported/normal-.png-093ee76674a602f195897038f8aa9313.ctex"
+uid="uid://entujb8bb6tp"
+path="res://.godot/imported/sad.png-ff79cdc4130b2577508adecd09fefa7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/characters/bunkichi_&_mitsuko/bunkichi/normal-.png"
-dest_files=["res://.godot/imported/normal-.png-093ee76674a602f195897038f8aa9313.ctex"]
+source_file="res://images/characters/bunkichi_kitamura/bunkichi/sad.png"
+dest_files=["res://.godot/imported/sad.png-ff79cdc4130b2577508adecd09fefa7f.ctex"]
 
 [params]
 

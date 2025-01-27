@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rdgtkhfla81q"
-path="res://.godot/imported/normal.png-01c8af2e54d51cc00c9be196eeaaaf48.ctex"
+path="res://.godot/imported/normal.png-7810896e597a26b289a82c6986df1e48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/characters/bunkichi_&_mitsuko/mitsuko/normal.png"
-dest_files=["res://.godot/imported/normal.png-01c8af2e54d51cc00c9be196eeaaaf48.ctex"]
+source_file="res://images/characters/mitsuko_kitamura/mitsuko/normal.png"
+dest_files=["res://.godot/imported/normal.png-7810896e597a26b289a82c6986df1e48.ctex"]
 
 [params]
 

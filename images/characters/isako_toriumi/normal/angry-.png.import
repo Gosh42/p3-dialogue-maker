@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://entujb8bb6tp"
-path="res://.godot/imported/sad.png-497aada318536b06b1fbfb7bc7959212.ctex"
+uid="uid://b7m38tlgoq7t"
+path="res://.godot/imported/angry-.png-1d70d93300baadd859660476885383f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/characters/bunkichi_&_mitsuko/bunkichi/sad.png"
-dest_files=["res://.godot/imported/sad.png-497aada318536b06b1fbfb7bc7959212.ctex"]
+source_file="res://images/characters/isako_toriumi/normal/angry-.png"
+dest_files=["res://.godot/imported/angry-.png-1d70d93300baadd859660476885383f8.ctex"]
 
 [params]
 

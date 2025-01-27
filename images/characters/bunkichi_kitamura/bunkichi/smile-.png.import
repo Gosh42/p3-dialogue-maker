@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uv18f0q6neou"
-path="res://.godot/imported/smile.png-b4441a79118422048670e32f45a78395.ctex"
+uid="uid://7y4io106skc"
+path="res://.godot/imported/smile-.png-b730296b18f87b55b63a53b7177f3560.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/characters/bunkichi_&_mitsuko/mitsuko/smile.png"
-dest_files=["res://.godot/imported/smile.png-b4441a79118422048670e32f45a78395.ctex"]
+source_file="res://images/characters/bunkichi_kitamura/bunkichi/smile-.png"
+dest_files=["res://.godot/imported/smile-.png-b730296b18f87b55b63a53b7177f3560.ctex"]
 
 [params]
 
