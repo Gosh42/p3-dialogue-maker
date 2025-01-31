@@ -4,12 +4,13 @@ extends Node
 var char_ctrl: CharacterController
 var current: int
 
-@onready var char_select: OptionButton
-@onready var costume_select: OptionButton
-@onready var sprite_select: OptionButton
+var char_select: OptionButton
+var costume_select: OptionButton
+var sprite_select: OptionButton
 
-@onready var position_slider: HSlider
-@onready var flip_check: CheckButton
+var position_slider: HSlider
+var flip_check: CheckButton
+var eye_check: CheckButton
 
 var character_names: PackedStringArray
 var costume_names: PackedStringArray
@@ -30,6 +31,7 @@ func setup(character_controller: CharacterController, index: int) -> void:
 	sprite_select = $SpriteSelection
 	position_slider = $PositionSlider
 	flip_check = $FlipCheck
+	eye_check = $EyeCheck
 	
 	# Adding characters
 	var dir: DirAccess = DirAccess.open("res://images/characters")
@@ -127,6 +129,7 @@ func _on_costume_selected(index: int) -> void:
 
 func _on_sprite_selected(index: int) -> void:
 	char_ctrl.set_sprite(current, sprite_images[index], eye_images[index])
+	eye_check.disabled = eye_images[index] == null
 
 # ====================== POSITIONING ====================== #
 
