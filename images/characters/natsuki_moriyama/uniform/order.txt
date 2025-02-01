@@ -1,0 +1,4 @@
+normal.png
+shocked.png
+upset.png
+scared.png

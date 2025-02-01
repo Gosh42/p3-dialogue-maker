@@ -1,0 +1,4 @@
+winter_uniform
+summer_uniform
+gym_uniform
+casual

@@ -1,0 +1,6 @@
+normal.png
+smile.png
+sad.png
+disappointed.png
+glasses.png
+insane.png

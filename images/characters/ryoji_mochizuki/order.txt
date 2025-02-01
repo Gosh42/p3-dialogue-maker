@@ -1,0 +1,3 @@
+uniform
+haori
+hot_springs

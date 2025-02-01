@@ -1,0 +1,7 @@
+normal.png
+smile.png
+angry.png
+sad.png
+surprised.png
+joy.png
+blush.png

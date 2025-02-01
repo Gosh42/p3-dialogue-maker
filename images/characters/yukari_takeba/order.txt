@@ -1,0 +1,11 @@
+winter_uniform
+winter_uniform_(armband)
+summer_uniform
+winter
+summer
+haori
+yukata
+kimono
+maid_uniform
+beach
+hot_springs
