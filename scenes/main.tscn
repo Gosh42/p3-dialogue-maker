@@ -123,8 +123,10 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 text = "TODO:
-- background selection including none, possibly with a few defaults
-- remaining characters
+- remaining characters including custom
+- redraw protagonists
+- more backgrounds including transparent and custom
+- navigator textbox
 - better save dialog
 - p3-styled ui theme"
 placeholder_text = "Type dialogue here.

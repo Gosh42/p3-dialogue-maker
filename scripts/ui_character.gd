@@ -13,6 +13,7 @@ var flip_check: CheckButton
 var eye_check: CheckButton
 
 var character_names: PackedStringArray
+#var character_data: Dictionary
 var costume_names: PackedStringArray
 
 var sprite_images: Array[Texture]
@@ -58,6 +59,17 @@ func _on_character_selected(index: int) -> void:
 	var dir: DirAccess = DirAccess.open(path)
 	
 	if dir:
+		# TODO: make data be taken from one json to one dictionary  in godot 4.4
+		# since lack of typed dictionaries makes them annoying to work with
+		
+		#if dir.file_exists("data.json"):
+			#var json_text: String = FileAccess.open(path + "/data.json", 
+				#FileAccess.READ).get_as_text()
+			#
+			#var json: JSON = JSON.new()
+			#json.parse(json_text)
+			#character_data = json.data
+		
 		if dir.file_exists("order.txt"):
 			var file: FileAccess = FileAccess.open(path + "/order.txt", FileAccess.READ)
 			while not file.eof_reached():
