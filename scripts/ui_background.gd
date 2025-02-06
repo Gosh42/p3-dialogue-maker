@@ -6,9 +6,14 @@ const PATH = "res://images/backgrounds"
 @onready var location_select: OptionButton = %LocationSelection
 @onready var parent_vbox: VBoxContainer = %Background
 @onready var container: GridContainer = %GridContainer
+@onready var path_edit: LineEdit = %PathEdit
+@onready var file_dialog: FileDialog = %FileDialog
+@onready var use_image_button: Button = %UseBGButton
 
 var location_names: PackedStringArray
 var bg_names: PackedStringArray
+
+var custom_bg: ImageTexture
 
 # ====================== INITIAL SETUP ====================== #
 
@@ -73,3 +78,29 @@ func _on_resized() -> void:
 	var h: int = container.get_theme_constant("h_separation")
 	col = (parent_vbox.size.x - (col + 2.5) * h) / 200
 	container.columns = max(1, col)
+
+# ====================== CUSTOM BACKGROUND ====================== #
+
+func _on_bg_file_open_button_pressed() -> void:
+	file_dialog.popup()
+
+
+func _on_file_selected(path: String) -> void:
+	var img: Image = Image.new()
+	var error: Error = img.load(path)
+	
+	if error != Error.OK:
+		path_edit.text = "Error loading the image."
+		custom_bg = null
+		return
+	
+	path_edit.text = path
+	
+	use_image_button.disabled = false
+	custom_bg = ImageTexture.create_from_image(img)
+	bg_ctrl.set_bg(custom_bg)
+
+
+func _on_use_bg_button_pressed() -> void:
+	if custom_bg:
+		bg_ctrl.set_bg(custom_bg)

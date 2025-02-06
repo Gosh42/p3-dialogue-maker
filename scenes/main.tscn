@@ -53,9 +53,10 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="HSplitContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 1
 
 [node name="Characters" type="ScrollContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -85,10 +86,32 @@ text = "-"
 
 [node name="Background" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 script = ExtResource("3_qdc1x")
 metadata/_tab_index = 1
+
+[node name="CustomBG" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Background"]
+layout_mode = 2
+
+[node name="PathEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer/TabContainer/Background/CustomBG"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Background image path..."
+editable = false
+
+[node name="BGFileOpenButton" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Background/CustomBG"]
+layout_mode = 2
+text = "Open file"
+
+[node name="UseBGButton" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Background/CustomBG"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Use image"
+
+[node name="HSeparator" type="HSeparator" parent="HSplitContainer/VBoxContainer/TabContainer/Background"]
+layout_mode = 2
 
 [node name="LocationSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer/TabContainer/Background"]
 unique_name_in_owner = true
@@ -326,8 +349,21 @@ script = ExtResource("5_c6br4")
 layout_mode = 2
 text = "Save image as file"
 
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 2
+size = Vector2i(848, 480)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.webp;WEBP files", "*.bmp;BMP files", "*.*;All files")
+use_native_dialog = true
+
 [connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer/HBoxContainer/AddCharButton" to="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer" method="_on_character_added"]
 [connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer/HBoxContainer/RemoveCharButton" to="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer" method="_on_character_removed"]
+[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Background/CustomBG/BGFileOpenButton" to="HSplitContainer/VBoxContainer/TabContainer/Background" method="_on_bg_file_open_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Background/CustomBG/UseBGButton" to="HSplitContainer/VBoxContainer/TabContainer/Background" method="_on_use_bg_button_pressed"]
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Background/LocationSelection" to="HSplitContainer/VBoxContainer/TabContainer/Background" method="_on_location_selected"]
 [connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NameEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_name_changed"]
 [connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/DialogueEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_dialogue_changed"]
@@ -349,3 +385,4 @@ text = "Save image as file"
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer/DayColourSelection" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_day_colour_selected"]
 [connection signal="color_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer/DayColourPicker" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_day_colour_picked"]
 [connection signal="button_down" from="HSplitContainer/VBoxContainer/VBoxContainer/SaveImageButton" to="HSplitContainer/VBoxContainer/VBoxContainer" method="_on_save_button_down"]
+[connection signal="file_selected" from="FileDialog" to="HSplitContainer/VBoxContainer/TabContainer/Background" method="_on_file_selected"]

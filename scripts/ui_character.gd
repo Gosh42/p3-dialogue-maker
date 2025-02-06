@@ -44,7 +44,6 @@ func setup(character_controller: CharacterController, index: int) -> void:
 	
 	char_ctrl.create_character()
 	
-	print("yeah!!")
 	char_select.select(0)
 	_on_character_selected(0)
 
@@ -131,8 +130,6 @@ func _on_costume_selected(index: int) -> void:
 				eye_images.append(load(eye_path))
 			else:
 				eye_images.append(null)
-			
-			print(len(sprite_images), " ", len(eye_images))
 		
 		sprite_select.select(0)
 		sprite_select.visible = sprite_select.item_count > 1
