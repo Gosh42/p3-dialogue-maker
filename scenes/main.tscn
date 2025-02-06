@@ -349,7 +349,7 @@ script = ExtResource("5_c6br4")
 layout_mode = 2
 text = "Save image as file"
 
-[node name="FileDialog" type="FileDialog" parent="."]
+[node name="FileDialogBG" type="FileDialog" parent="."]
 unique_name_in_owner = true
 title = "Open a File"
 initial_position = 2
@@ -385,4 +385,4 @@ use_native_dialog = true
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer/DayColourSelection" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_day_colour_selected"]
 [connection signal="color_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer/DayColourPicker" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_day_colour_picked"]
 [connection signal="button_down" from="HSplitContainer/VBoxContainer/VBoxContainer/SaveImageButton" to="HSplitContainer/VBoxContainer/VBoxContainer" method="_on_save_button_down"]
-[connection signal="file_selected" from="FileDialog" to="HSplitContainer/VBoxContainer/TabContainer/Background" method="_on_file_selected"]
+[connection signal="file_selected" from="FileDialogBG" to="HSplitContainer/VBoxContainer/TabContainer/Background" method="_on_file_selected"]

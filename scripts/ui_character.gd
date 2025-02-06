@@ -11,6 +11,9 @@ var sprite_select: OptionButton
 var position_slider: HSlider
 var flip_check: CheckButton
 var eye_check: CheckButton
+var file_dialog: FileDialog
+var path_edit: LineEdit
+var use_image_button: Button
 
 var character_names: PackedStringArray
 #var character_data: Dictionary
@@ -19,6 +22,8 @@ var costume_names: PackedStringArray
 var sprite_images: Array[Texture]
 var eye_images: Array[Texture]
 var eye_height: int
+
+var custom_char: ImageTexture
 
 # ====================== SETUP AND REMOVAL ====================== #
 
@@ -33,6 +38,9 @@ func setup(character_controller: CharacterController, index: int) -> void:
 	position_slider = $PositionSlider
 	flip_check = $FlipCheck
 	eye_check = $EyeCheck
+	path_edit = $HBoxContainer2/PathEdit
+	file_dialog = $FileDialogCharacter
+	use_image_button = $HBoxContainer2/UseImageButton
 	
 	# Adding characters
 	var dir: DirAccess = DirAccess.open("res://images/characters")
@@ -157,3 +165,32 @@ func _on_flip_toggled(toggled_on: bool) -> void:
 
 func _on_eyes_toggled(toggled_on: bool) -> void:
 	char_ctrl.toggle_eyes(current, toggled_on)
+
+# ====================== CUSTOM CHARACTER IMAGE ====================== #
+
+func _on_file_open_pressed() -> void:
+	file_dialog.popup()
+
+
+func _on_file_file_selected(path: String) -> void:
+	var img: Image = Image.new()
+	var error: Error = img.load(path)
+	
+	if error != Error.OK:
+		path_edit.text = "Error loading the image."
+		custom_char = null
+		return
+	
+	path_edit.text = path
+	
+	use_image_button.disabled = false
+	custom_char = ImageTexture.create_from_image(img)
+	
+	char_ctrl.set_sprite(current, custom_char, null)
+	eye_check.disabled = true
+
+
+func _on_use_image_button_pressed() -> void:
+	if custom_char:
+		char_ctrl.set_sprite(current, custom_char, null)
+		eye_check.disabled = true

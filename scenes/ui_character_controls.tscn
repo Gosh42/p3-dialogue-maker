@@ -14,7 +14,7 @@ layout_mode = 2
 [node name="SpriteSelection" type="OptionButton" parent="."]
 layout_mode = 2
 
-[node name="== ANSWER ==" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
 
 [node name="PositionSlider" type="HSlider" parent="."]
@@ -49,6 +49,37 @@ text = "Flip character"
 layout_mode = 2
 text = "Close eyes"
 
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PathEdit" type="LineEdit" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Custom character image path..."
+editable = false
+
+[node name="FileOpenButton" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Open file"
+
+[node name="UseImageButton" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+disabled = true
+text = "Use image"
+
+[node name="FileDialogCharacter" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(848, 480)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.webp;WEBP files", "*.bmp;BMP files", "*.*;All files")
+use_native_dialog = true
+
 [connection signal="item_selected" from="CharSelection" to="." method="_on_character_selected"]
 [connection signal="item_selected" from="CostumeSelection" to="." method="_on_costume_selected"]
 [connection signal="item_selected" from="SpriteSelection" to="." method="_on_sprite_selected"]
@@ -58,3 +89,6 @@ text = "Close eyes"
 [connection signal="pressed" from="HBoxContainer/RightButton" to="." method="_on_position_snapped" binds= [256.0]]
 [connection signal="toggled" from="FlipCheck" to="." method="_on_flip_toggled"]
 [connection signal="toggled" from="EyeCheck" to="." method="_on_eyes_toggled"]
+[connection signal="pressed" from="HBoxContainer2/FileOpenButton" to="." method="_on_file_open_pressed"]
+[connection signal="pressed" from="HBoxContainer2/UseImageButton" to="." method="_on_use_image_button_pressed"]
+[connection signal="file_selected" from="FileDialogCharacter" to="." method="_on_file_file_selected"]

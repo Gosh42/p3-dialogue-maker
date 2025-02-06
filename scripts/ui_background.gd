@@ -7,7 +7,7 @@ const PATH = "res://images/backgrounds"
 @onready var parent_vbox: VBoxContainer = %Background
 @onready var container: GridContainer = %GridContainer
 @onready var path_edit: LineEdit = %PathEdit
-@onready var file_dialog: FileDialog = %FileDialog
+@onready var file_dialog: FileDialog = %FileDialogBG
 @onready var use_image_button: Button = %UseBGButton
 
 var location_names: PackedStringArray
