@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx2wefdr6laqy"
-path="res://.godot/imported/swimming.png-3a56f7ca601f5f7a861049bc3427f30b.ctex"
+uid="uid://sdmbdyvsvage"
+path="res://.godot/imported/summer_(reload-style).png-e6325063acb90452ad97dcc782666b2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/characters/protagonist/makoto_yuki/swimming.png"
-dest_files=["res://.godot/imported/swimming.png-3a56f7ca601f5f7a861049bc3427f30b.ctex"]
+source_file="res://images/characters/makoto_yuki/makoto_yuki/summer_(reload-style).png"
+dest_files=["res://.godot/imported/summer_(reload-style).png-e6325063acb90452ad97dcc782666b2a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b38352fnu6rde"
-path="res://.godot/imported/kyoto.png-1818d401a7b972906d19aba2043446b6.ctex"
+uid="uid://d18uoytf612o"
+path="res://.godot/imported/haori.png-dabaf3365ef1df854fb9b035cf2a61e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/characters/makoto_yuki/makoto_yuki/kyoto.png"
-dest_files=["res://.godot/imported/kyoto.png-1818d401a7b972906d19aba2043446b6.ctex"]
+source_file="res://images/characters/makoto_yuki/makoto_yuki/haori.png"
+dest_files=["res://.godot/imported/haori.png-dabaf3365ef1df854fb9b035cf2a61e8.ctex"]
 
 [params]
 
