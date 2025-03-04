@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsbt7ujjx8twm"
-path="res://.godot/imported/kyoto.png-e549463fbfa266d2317105f0f1d00ec3.ctex"
+uid="uid://i7oyo51vpvts"
+path="res://.godot/imported/kimono.png-2c3ab5dc9fb93ab751dec8d850816498.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/characters/kotone_shiomi/kotone_shiomi/kyoto.png"
-dest_files=["res://.godot/imported/kyoto.png-e549463fbfa266d2317105f0f1d00ec3.ctex"]
+source_file="res://images/characters/kotone_shiomi/kotone_shiomi/kimono.png"
+dest_files=["res://.godot/imported/kimono.png-2c3ab5dc9fb93ab751dec8d850816498.ctex"]
 
 [params]
 
