@@ -147,7 +147,7 @@ custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 text = "TODO:
 - social link characters from portable
-- more backgrounds including transparent
+- more backgrounds
 - navigator textbox
 - better save dialog
 - p3-styled ui theme"
