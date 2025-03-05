@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://d2dfffc8m7lxh"]
+[gd_scene load_steps=64 format=3 uid="uid://d2dfffc8m7lxh"]
 
 [ext_resource type="Script" uid="uid://dew8v5xli8vhu" path="res://scripts/screen_controller_getter.gd" id="1_6at0b"]
 [ext_resource type="Script" uid="uid://6171r1ofgknx" path="res://scripts/screen_character_controller.gd" id="2_58ux5"]
@@ -54,6 +54,9 @@
 [ext_resource type="Texture2D" uid="uid://e7cnpv5tkj4p" path="res://images/ui/moon/Half.png" id="43_70ceh"]
 [ext_resource type="Texture2D" uid="uid://28bgcmxmvtcq" path="res://images/ui/moon/New.png" id="44_fjtqw"]
 [ext_resource type="Texture2D" uid="uid://csusnt74shbuw" path="res://images/ui/moon/Full.png" id="45_5fj3a"]
+[ext_resource type="Texture2D" uid="uid://bkcgt7dd551yb" path="res://images/ui/navigator/64a54c72eb1b29f6-fe5885856ddbd74a-000015d3.png" id="48_jldnj"]
+[ext_resource type="Texture2D" uid="uid://2k4ncnsys0jk" path="res://images/ui/navigator/Fuuka.png" id="48_ooj4f"]
+[ext_resource type="LabelSettings" uid="uid://o220o4k2ag73" path="res://fonts/navi_label_settings.tres" id="49_mjgv6"]
 
 [sub_resource type="Animation" id="Animation_8nkws"]
 length = 0.001
@@ -293,6 +296,7 @@ layout_mode = 1
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 448.0
+metadata/_edit_lock_ = true
 
 [node name="EntireCorner" type="Control" parent="."]
 unique_name_in_owner = true
@@ -302,6 +306,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_lock_ = true
 
 [node name="Corner" type="Control" parent="EntireCorner"]
 layout_mode = 1
@@ -478,6 +483,74 @@ libraries = {
 &"": SubResource("AnimationLibrary_bgaoh")
 }
 speed_scale = 0.0
+
+[node name="NavigatorTextbox" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 486.0
+offset_bottom = 156.0
+metadata/_edit_lock_ = true
+
+[node name="GlowingBG" type="Control" parent="NavigatorTextbox"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="NavigatorTextbox/GlowingBG"]
+texture_filter = 2
+layout_mode = 0
+offset_top = 12.0
+offset_right = 565.0
+offset_bottom = 85.0
+texture = ExtResource("48_jldnj")
+
+[node name="TextureRect2" type="TextureRect" parent="NavigatorTextbox/GlowingBG"]
+texture_filter = 2
+offset_top = 9.0
+offset_right = 564.0
+offset_bottom = 88.0
+texture = ExtResource("48_jldnj")
+
+[node name="TextureRect3" type="TextureRect" parent="NavigatorTextbox/GlowingBG"]
+visible = false
+texture_filter = 2
+offset_top = -30.0
+offset_right = 550.0
+offset_bottom = 127.0
+texture = ExtResource("48_jldnj")
+
+[node name="TextureRect4" type="TextureRect" parent="NavigatorTextbox/GlowingBG"]
+texture_filter = 2
+offset_top = -30.0
+offset_right = 565.0
+offset_bottom = 127.0
+texture = ExtResource("48_jldnj")
+
+[node name="NaviPortrait" type="TextureRect" parent="NavigatorTextbox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -30.0
+offset_top = -17.0
+offset_right = 142.0
+offset_bottom = 155.0
+texture = ExtResource("48_ooj4f")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="NaviLabel" type="Label" parent="NavigatorTextbox"]
+unique_name_in_owner = true
+offset_left = 121.0
+offset_top = 32.0
+offset_right = 614.0
+offset_bottom = 152.0
+scale = Vector2(0.6, 0.5)
+text = "*gasp* The enemy!
+(second line)"
+label_settings = ExtResource("49_mjgv6")
+autowrap_mode = 3
+max_lines_visible = 3
 
 [node name="Textbox" type="TextureRect" parent="."]
 layout_mode = 0

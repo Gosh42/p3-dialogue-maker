@@ -11,6 +11,10 @@ extends Node
 @onready var choice_label_2: Label = %Choice2
 @onready var choice_label_3: Label = %Choice3
 
+@onready var navi_box: Control = %NavigatorTextbox
+@onready var navi_portrait: TextureRect = %NaviPortrait
+@onready var navi_label: Label = %NaviLabel
+
 @onready var choices: Array[Label] = [choice_label_1, choice_label_2, choice_label_3]
 var using_quotes_for_answers: bool = true
 var choice_texts: Array[String] = ["Choice 1", "Choice 2", "Choice 3"]
@@ -19,6 +23,8 @@ const LABEL_RED: Color = Color(0x57171cff)
 const LABEL_GREY: Color = Color(0x52525cff)
 const LABEL_WHITE: Color = Color(0xdfdfffff)
 
+
+# ====================== MAIN TEXTBOX ====================== #
 
 func set_name_text(text: String) -> void:
 	name_label.text = text
@@ -31,6 +37,7 @@ func set_dialogue_text(text: String) -> void:
 func toggle_arrow(toggled_on: bool) -> void:
 	arrow.visible = toggled_on
 
+# ====================== CHOICE TEXTBOX ====================== #
 
 func toggle_choice_textbox(toggled_on: bool) -> void:
 	choice_box.visible = toggled_on
@@ -79,3 +86,16 @@ func set_choice_text(choice_i: int, text: String) -> void:
 		choices[choice_i].text = "”" + text + "”"
 	else:
 		choices[choice_i].text = text
+
+# ====================== NAVIGATOR TEXTBOX ====================== #
+
+func toggle_navi_textbox(toggled_on: bool) -> void:
+	navi_box.visible = toggled_on
+
+
+func set_navi(texture: Texture) -> void:
+	navi_portrait.texture = texture
+
+
+func set_navi_text(text: String) -> void:
+	navi_label.text = text

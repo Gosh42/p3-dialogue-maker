@@ -168,15 +168,20 @@ layout_mode = 2
 layout_mode = 2
 text = "Answer textbox"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
+[node name="AnswerSettings" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
-[node name="ThirdChoiceCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/HBoxContainer3"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings"]
+layout_mode = 2
+
+[node name="ThirdChoiceCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Three choices to pick from "
 
-[node name="ChoiceSpinBox" type="SpinBox" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/HBoxContainer3"]
+[node name="ChoiceSpinBox" type="SpinBox" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings/HBoxContainer3"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -187,25 +192,65 @@ allow_greater = true
 allow_lesser = true
 prefix = "Selected choice:"
 
-[node name="QuotesCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
+[node name="QuotesCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings"]
 unique_name_in_owner = true
 layout_mode = 2
 button_pressed = true
 text = "Quotation marks"
 
-[node name="Choice1Edit" type="LineEdit" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
+[node name="Choice1Edit" type="LineEdit" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings"]
 layout_mode = 2
 placeholder_text = "Choice 1"
 
-[node name="Choice2Edit" type="LineEdit" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
+[node name="Choice2Edit" type="LineEdit" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings"]
 layout_mode = 2
 placeholder_text = "Choice 2"
 
-[node name="Choice3Edit" type="LineEdit" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
+[node name="Choice3Edit" type="LineEdit" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 placeholder_text = "Choice 3"
+
+[node name="== NAVI ==" type="HSeparator" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
+layout_mode = 2
+
+[node name="NaviCheck" type="CheckButton" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
+layout_mode = 2
+text = "Navigator textbox"
+
+[node name="NaviSettings" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="NaviSelection" type="OptionButton" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NaviSettings"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CustomNavi" type="HBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NaviSettings"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="NaviPathEdit" type="LineEdit" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NaviSettings/CustomNavi"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Portrait image path..."
+editable = false
+
+[node name="NaviFileOpen" type="Button" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NaviSettings/CustomNavi"]
+layout_mode = 2
+text = "Open File"
+
+[node name="NaviDialogueEdit" type="TextEdit" parent="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NaviSettings"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+placeholder_text = "*gasp* The enemy!
+(second line)"
+wrap_mode = 1
 
 [node name="Time and date" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/TabContainer"]
 visible = false
@@ -359,7 +404,19 @@ size = Vector2i(848, 480)
 ok_button_text = "Open"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.webp;WEBP files", "*.bmp;BMP files", "*.*;All files")
+filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.webp;WEBP files", "*.bmp;BMP files")
+use_native_dialog = true
+
+[node name="FileDialogNavi" type="FileDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Open a File"
+initial_position = 2
+size = Vector2i(848, 480)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.webp;WEBP files", "*.bmp;BMP files")
 use_native_dialog = true
 
 [connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer/HBoxContainer/AddCharButton" to="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer" method="_on_character_added"]
@@ -371,12 +428,16 @@ use_native_dialog = true
 [connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/DialogueEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_dialogue_changed"]
 [connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/ArrowCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_arrow_toggled"]
 [connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_answer_toggled"]
-[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/HBoxContainer3/ThirdChoiceCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_third_choice_toggled"]
-[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/HBoxContainer3/ChoiceSpinBox" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_selected_choice_changed"]
-[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/QuotesCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_quotes_toggled"]
-[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/Choice1Edit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_choice_1_text_changed"]
-[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/Choice2Edit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_choice_2_text_changed"]
-[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/Choice3Edit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_choice_3_text_changed"]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings/HBoxContainer3/ThirdChoiceCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_third_choice_toggled"]
+[connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings/HBoxContainer3/ChoiceSpinBox" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_selected_choice_changed"]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings/QuotesCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_quotes_toggled"]
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings/Choice1Edit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_choice_1_text_changed"]
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings/Choice2Edit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_choice_2_text_changed"]
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/AnswerSettings/Choice3Edit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_choice_3_text_changed"]
+[connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NaviCheck" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_navigator_toggled"]
+[connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NaviSettings/NaviSelection" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_navigator_selected"]
+[connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NaviSettings/CustomNavi/NaviFileOpen" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_navi_file_open_pressed"]
+[connection signal="text_changed" from="HSplitContainer/VBoxContainer/TabContainer/Dialogue/NaviSettings/NaviDialogueEdit" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_navigator_dialogue_changed"]
 [connection signal="toggled" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/CornerCheck" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_corner_toggled"]
 [connection signal="item_selected" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/TimeSelection" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_time_selected"]
 [connection signal="value_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer2/MonthSpinBox" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_month_changed"]
@@ -388,3 +449,4 @@ use_native_dialog = true
 [connection signal="color_changed" from="HSplitContainer/VBoxContainer/TabContainer/Time and date/HBoxContainer/DayColourPicker" to="HSplitContainer/VBoxContainer/TabContainer/Time and date" method="_on_day_colour_picked"]
 [connection signal="button_down" from="HSplitContainer/VBoxContainer/VBoxContainer/SaveImageButton" to="HSplitContainer/VBoxContainer/VBoxContainer" method="_on_save_button_down"]
 [connection signal="file_selected" from="FileDialogBG" to="HSplitContainer/VBoxContainer/TabContainer/Background" method="_on_file_selected"]
+[connection signal="file_selected" from="FileDialogNavi" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_file_dialog_navi_file_selected"]

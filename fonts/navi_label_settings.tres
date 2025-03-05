@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://o220o4k2ag73"]
+
+[ext_resource type="FontFile" uid="uid://chjw8frty55ne" path="res://fonts/FOT-SkipStd-B.otf" id="1_8edep"]
+
+[resource]
+line_spacing = 12.0
+font = ExtResource("1_8edep")
+font_size = 37
+font_color = Color(0.105882, 0.164706, 0.25098, 1)

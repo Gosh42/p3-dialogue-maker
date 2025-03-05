@@ -1,13 +1,13 @@
 class_name CharacterController
 extends Node
 
-@onready var char: PackedScene = preload("res://scenes/character_texture_rect.tscn")
+@onready var char_scene: PackedScene = preload("res://scenes/character_texture_rect.tscn")
 @onready var character_container: Control = %Characters
 var characters: Array[TextureRect]
 
 
 func create_character() -> void:
-	var new_char: TextureRect = char.instantiate()
+	var new_char: TextureRect = char_scene.instantiate()
 	characters.append(new_char)
 	
 	character_container.add_child(new_char)
