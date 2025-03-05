@@ -19,7 +19,6 @@ func _ready() -> void:
 	
 	# Setting date and weekday based on system date
 	
-	# Godot 4.4 full release with typed dictionaries when???
 	var time_dict: Dictionary = Time.get_datetime_dict_from_system()
 	
 	var month: int = time_dict["month"]

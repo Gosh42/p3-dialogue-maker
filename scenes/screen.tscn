@@ -1,13 +1,13 @@
 [gd_scene load_steps=61 format=3 uid="uid://d2dfffc8m7lxh"]
 
-[ext_resource type="Script" path="res://scripts/screen_controller_getter.gd" id="1_6at0b"]
-[ext_resource type="Script" path="res://scripts/screen_character_controller.gd" id="2_58ux5"]
+[ext_resource type="Script" uid="uid://dew8v5xli8vhu" path="res://scripts/screen_controller_getter.gd" id="1_6at0b"]
+[ext_resource type="Script" uid="uid://6171r1ofgknx" path="res://scripts/screen_character_controller.gd" id="2_58ux5"]
 [ext_resource type="Texture2D" uid="uid://cxa484vpt2kh7" path="res://images/ui/I_MOON_00.SPR_9.png" id="2_lmoud"]
-[ext_resource type="Script" path="res://scripts/screen_dialogue_controller.gd" id="2_yyqxe"]
+[ext_resource type="Script" uid="uid://d0gk7s61xdlj1" path="res://scripts/screen_dialogue_controller.gd" id="2_yyqxe"]
 [ext_resource type="Texture2D" uid="uid://cmadhojajy5n0" path="res://images/ui/I_MOON_00.SPR_8.png" id="3_d8yyf"]
-[ext_resource type="Script" path="res://scripts/screen_bg_controller.gd" id="3_pmedi"]
+[ext_resource type="Script" uid="uid://ec3oyjdtgve7" path="res://scripts/screen_bg_controller.gd" id="3_pmedi"]
 [ext_resource type="Texture2D" uid="uid://p5gnikede6cp" path="res://images/ui/textbox.png" id="4_0xtrg"]
-[ext_resource type="Script" path="res://scripts/screen_corner_controller.gd" id="4_74gh7"]
+[ext_resource type="Script" uid="uid://86cqew3tlm0g" path="res://scripts/screen_corner_controller.gd" id="4_74gh7"]
 [ext_resource type="LabelSettings" uid="uid://p3mgberf6nax" path="res://fonts/nametag_label_settings.tres" id="5_77smh"]
 [ext_resource type="Texture2D" uid="uid://8nx4e7w6svc6" path="res://images/backgrounds/other/Loading_background_colour.png" id="6_3e14m"]
 [ext_resource type="Texture2D" uid="uid://bnt2ti1do4bgy" path="res://images/ui/daytimes.png" id="6_b1318"]
@@ -235,8 +235,8 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bgaoh"]
 _data = {
-"RESET": SubResource("Animation_8nkws"),
-"moon_cycle": SubResource("Animation_35dx0")
+&"RESET": SubResource("Animation_8nkws"),
+&"moon_cycle": SubResource("Animation_35dx0")
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_mee7y"]
@@ -475,7 +475,7 @@ texture = ExtResource("20_l4bpx")
 [node name="MoonPhase" type="AnimationPlayer" parent="EntireCorner/Moon"]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_bgaoh")
+&"": SubResource("AnimationLibrary_bgaoh")
 }
 speed_scale = 0.0
 

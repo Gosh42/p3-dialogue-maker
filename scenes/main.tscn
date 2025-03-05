@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://pwqpmp3gqsni"]
 
 [ext_resource type="PackedScene" uid="uid://d2dfffc8m7lxh" path="res://scenes/screen.tscn" id="1_ybar2"]
-[ext_resource type="Script" path="res://scripts/ui_char_management.gd" id="2_8g786"]
-[ext_resource type="Script" path="res://scripts/ui_dialogue.gd" id="3_dwsvi"]
-[ext_resource type="Script" path="res://scripts/ui_background.gd" id="3_qdc1x"]
-[ext_resource type="Script" path="res://scripts/ui_corner.gd" id="4_8r5i6"]
-[ext_resource type="Script" path="res://scripts/ui_save.gd" id="5_c6br4"]
+[ext_resource type="Script" uid="uid://dh1pwx70a1v1g" path="res://scripts/ui_char_management.gd" id="2_8g786"]
+[ext_resource type="Script" uid="uid://khxw6eio78bj" path="res://scripts/ui_dialogue.gd" id="3_dwsvi"]
+[ext_resource type="Script" uid="uid://dgn4w3lew5i5w" path="res://scripts/ui_background.gd" id="3_qdc1x"]
+[ext_resource type="Script" uid="uid://6vetlk77jqlx" path="res://scripts/ui_corner.gd" id="4_8r5i6"]
+[ext_resource type="Script" uid="uid://bj8w2708wgtkh" path="res://scripts/ui_save.gd" id="5_c6br4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qt6s1"]
 viewport_path = NodePath("SubViewport")
@@ -227,6 +227,7 @@ layout_mode = 2
 selected = 6
 item_count = 11
 popup/item_0/text = "Before Dawn"
+popup/item_0/id = 0
 popup/item_1/text = "Early Morning"
 popup/item_1/id = 1
 popup/item_2/text = "Morning"
@@ -285,6 +286,7 @@ layout_mode = 2
 selected = 0
 item_count = 8
 popup/item_0/text = "M"
+popup/item_0/id = 0
 popup/item_1/text = "Tu"
 popup/item_1/id = 1
 popup/item_2/text = "W"
@@ -323,6 +325,7 @@ size_flags_horizontal = 3
 selected = 0
 item_count = 6
 popup/item_0/text = "Blue"
+popup/item_0/id = 0
 popup/item_1/text = "Blue (Portable)"
 popup/item_1/id = 1
 popup/item_2/text = "Pink"

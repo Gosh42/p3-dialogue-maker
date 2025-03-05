@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cda8j05imxn84"]
 
-[ext_resource type="Script" path="res://scripts/ui_character.gd" id="1_gl6li"]
+[ext_resource type="Script" uid="uid://cqx6j0023jk5l" path="res://scripts/ui_character.gd" id="1_gl6li"]
 
 [node name="CharacterControls" type="VBoxContainer"]
 script = ExtResource("1_gl6li")
