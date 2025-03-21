@@ -148,8 +148,6 @@ layout_mode = 2
 text = "TODO:
 - social link characters from portable
 - more backgrounds
-- navigator textbox
-- better save dialog
 - p3-styled ui theme"
 placeholder_text = "Type dialogue here.
 Can be up to three
@@ -405,7 +403,6 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.webp;WEBP files", "*.bmp;BMP files")
-use_native_dialog = true
 
 [node name="FileDialogNavi" type="FileDialog" parent="."]
 unique_name_in_owner = true
@@ -417,7 +414,13 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.webp;WEBP files", "*.bmp;BMP files")
-use_native_dialog = true
+
+[node name="SaveDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+initial_position = 2
+size = Vector2i(848, 480)
+access = 2
+filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.webp;WEBP files")
 
 [connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer/HBoxContainer/AddCharButton" to="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer" method="_on_character_added"]
 [connection signal="pressed" from="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer/HBoxContainer/RemoveCharButton" to="HSplitContainer/VBoxContainer/TabContainer/Characters/VBoxContainer" method="_on_character_removed"]
@@ -450,3 +453,4 @@ use_native_dialog = true
 [connection signal="button_down" from="HSplitContainer/VBoxContainer/VBoxContainer/SaveImageButton" to="HSplitContainer/VBoxContainer/VBoxContainer" method="_on_save_button_down"]
 [connection signal="file_selected" from="FileDialogBG" to="HSplitContainer/VBoxContainer/TabContainer/Background" method="_on_file_selected"]
 [connection signal="file_selected" from="FileDialogNavi" to="HSplitContainer/VBoxContainer/TabContainer/Dialogue" method="_on_file_dialog_navi_file_selected"]
+[connection signal="file_selected" from="SaveDialog" to="HSplitContainer/VBoxContainer/VBoxContainer" method="_on_save_confirmed"]

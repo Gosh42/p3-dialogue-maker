@@ -41,6 +41,8 @@ func setup(character_controller: CharacterController, index: int) -> void:
 	file_dialog = $FileDialogCharacter
 	use_image_button = $HBoxContainer2/UseImageButton
 	
+	file_dialog.current_path = OS.get_system_dir(OS.SYSTEM_DIR_PICTURES) + "/"
+	
 	# Adding characters
 	var dir: DirAccess = DirAccess.open("res://images/characters")
 	

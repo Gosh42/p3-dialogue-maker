@@ -32,6 +32,8 @@ func _ready() -> void:
 	var selection_index: int = randi() % location_select.item_count
 	location_select.select(selection_index)
 	_on_location_selected(selection_index)
+	
+	file_dialog.current_path = OS.get_system_dir(OS.SYSTEM_DIR_PICTURES) + "/"
 
 # ====================== BACKGROUND SELECTION ====================== #
 

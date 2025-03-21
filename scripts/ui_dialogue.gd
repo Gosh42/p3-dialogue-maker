@@ -41,6 +41,8 @@ func _ready() -> void:
 	dialogue.toggle_quotes(true)
 	dialogue.toggle_navi_textbox(false)
 	dialogue.set_navi(navigators[0])
+	
+	file_dialog.current_path = OS.get_system_dir(OS.SYSTEM_DIR_PICTURES) + "/"
 
 # ====================== DIALOGUE BOX ====================== #
 

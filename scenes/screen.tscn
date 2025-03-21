@@ -507,6 +507,7 @@ texture = ExtResource("48_jldnj")
 
 [node name="TextureRect2" type="TextureRect" parent="NavigatorTextbox/GlowingBG"]
 texture_filter = 2
+layout_mode = 0
 offset_top = 9.0
 offset_right = 564.0
 offset_bottom = 88.0
@@ -515,6 +516,7 @@ texture = ExtResource("48_jldnj")
 [node name="TextureRect3" type="TextureRect" parent="NavigatorTextbox/GlowingBG"]
 visible = false
 texture_filter = 2
+layout_mode = 0
 offset_top = -30.0
 offset_right = 550.0
 offset_bottom = 127.0
@@ -522,6 +524,7 @@ texture = ExtResource("48_jldnj")
 
 [node name="TextureRect4" type="TextureRect" parent="NavigatorTextbox/GlowingBG"]
 texture_filter = 2
+layout_mode = 0
 offset_top = -30.0
 offset_right = 565.0
 offset_bottom = 127.0
@@ -541,6 +544,7 @@ metadata/_edit_lock_ = true
 
 [node name="NaviLabel" type="Label" parent="NavigatorTextbox"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 121.0
 offset_top = 32.0
 offset_right = 614.0

@@ -77,8 +77,7 @@ size = Vector2i(848, 480)
 ok_button_text = "Open"
 file_mode = 0
 access = 2
-filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.webp;WEBP files", "*.bmp;BMP files", "*.*;All files")
-use_native_dialog = true
+filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.webp;WEBP files", "*.*;All files")
 
 [connection signal="item_selected" from="CharSelection" to="." method="_on_character_selected"]
 [connection signal="item_selected" from="CostumeSelection" to="." method="_on_costume_selected"]
