@@ -17,30 +17,6 @@ layout_mode = 2
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
 
-[node name="PositionSlider" type="HSlider" parent="."]
-layout_mode = 2
-min_value = -256.0
-max_value = 384.0
-value = 256.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="LeftButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "<< Left"
-
-[node name="MidButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "= Middle ="
-
-[node name="RightButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Right >>"
-
 [node name="FlipCheck" type="CheckButton" parent="."]
 layout_mode = 2
 text = "Flip character"
@@ -48,6 +24,102 @@ text = "Flip character"
 [node name="EyeCheck" type="CheckButton" parent="."]
 layout_mode = 2
 text = "Close eyes"
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="PosButtons" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LeftButton" type="Button" parent="PosButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<< Left"
+
+[node name="MidButton" type="Button" parent="PosButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "= Middle ="
+
+[node name="RightButton" type="Button" parent="PosButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Right >>"
+
+[node name="PositionSettingsButton" type="Button" parent="."]
+layout_mode = 2
+toggle_mode = true
+text = "More position settings... v"
+
+[node name="PositionVBox" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="HorPosition" type="HBoxContainer" parent="PositionVBox"]
+layout_mode = 2
+
+[node name="PositionHorSlider" type="HSlider" parent="PositionVBox/HorPosition"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -256.0
+max_value = 384.0
+value = 256.0
+
+[node name="HPosLabel" type="Label" parent="PositionVBox/HorPosition"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "384"
+horizontal_alignment = 1
+
+[node name="VerPosition" type="HBoxContainer" parent="PositionVBox"]
+layout_mode = 2
+
+[node name="PositionVerSlider" type="HSlider" parent="PositionVBox/VerPosition"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -512.0
+max_value = 384.0
+
+[node name="VPosLabel" type="Label" parent="PositionVBox/VerPosition"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Rotation" type="HBoxContainer" parent="PositionVBox"]
+layout_mode = 2
+
+[node name="RotationSlider" type="HSlider" parent="PositionVBox/Rotation"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 360.0
+
+[node name="RotatLabel" type="Label" parent="PositionVBox/Rotation"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Size" type="HBoxContainer" parent="PositionVBox"]
+layout_mode = 2
+
+[node name="SizeSlider" type="HSlider" parent="PositionVBox/Size"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="SizeLabel" type="Label" parent="PositionVBox/Size"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="ResetButton" type="Button" parent="PositionVBox"]
+layout_mode = 2
+text = "Reset position"
 
 [node name="HSeparator2" type="HSeparator" parent="."]
 layout_mode = 2
@@ -82,12 +154,17 @@ filters = PackedStringArray("*.png;PNG files", "*.jpg,*.jpeg;JPEG files", "*.web
 [connection signal="item_selected" from="CharSelection" to="." method="_on_character_selected"]
 [connection signal="item_selected" from="CostumeSelection" to="." method="_on_costume_selected"]
 [connection signal="item_selected" from="SpriteSelection" to="." method="_on_sprite_selected"]
-[connection signal="value_changed" from="PositionSlider" to="." method="_on_position_changed"]
-[connection signal="pressed" from="HBoxContainer/LeftButton" to="." method="_on_position_snapped" binds= [-128.0]]
-[connection signal="pressed" from="HBoxContainer/MidButton" to="." method="_on_position_snapped" binds= [80.0]]
-[connection signal="pressed" from="HBoxContainer/RightButton" to="." method="_on_position_snapped" binds= [256.0]]
 [connection signal="toggled" from="FlipCheck" to="." method="_on_flip_toggled"]
 [connection signal="toggled" from="EyeCheck" to="." method="_on_eyes_toggled"]
+[connection signal="pressed" from="PosButtons/LeftButton" to="." method="_on_position_snapped" binds= [-128.0]]
+[connection signal="pressed" from="PosButtons/MidButton" to="." method="_on_position_snapped" binds= [80.0]]
+[connection signal="pressed" from="PosButtons/RightButton" to="." method="_on_position_snapped" binds= [256.0]]
+[connection signal="toggled" from="PositionSettingsButton" to="." method="_on_extra_position_settings_toggled"]
+[connection signal="value_changed" from="PositionVBox/HorPosition/PositionHorSlider" to="." method="_on_position_changed"]
+[connection signal="value_changed" from="PositionVBox/VerPosition/PositionVerSlider" to="." method="_on_vertical_position_changed"]
+[connection signal="value_changed" from="PositionVBox/Rotation/RotationSlider" to="." method="_on_rotation_changed"]
+[connection signal="value_changed" from="PositionVBox/Size/SizeSlider" to="." method="_on_size_changed"]
+[connection signal="pressed" from="PositionVBox/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="HBoxContainer2/FileOpenButton" to="." method="_on_file_open_pressed"]
 [connection signal="pressed" from="HBoxContainer2/UseImageButton" to="." method="_on_use_image_button_pressed"]
 [connection signal="file_selected" from="FileDialogCharacter" to="." method="_on_file_file_selected"]

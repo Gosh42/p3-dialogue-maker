@@ -8,9 +8,19 @@ var char_select: OptionButton
 var costume_select: OptionButton
 var sprite_select: OptionButton
 
-var position_slider: HSlider
 var flip_check: CheckButton
 var eye_check: CheckButton
+
+var pos_vbox: VBoxContainer
+var position_h_slider: HSlider
+var position_v_slider: HSlider
+var rotation_slider: HSlider
+var size_slider: HSlider
+var h_pos_label: Label
+var v_pos_label: Label
+var rotation_label: Label
+var size_label: Label
+
 var file_dialog: FileDialog
 var path_edit: LineEdit
 var use_image_button: Button
@@ -34,9 +44,20 @@ func setup(character_controller: CharacterController, index: int) -> void:
 	char_select = $CharSelection
 	costume_select = $CostumeSelection
 	sprite_select = $SpriteSelection
-	position_slider = $PositionSlider
+	
 	flip_check = $FlipCheck
 	eye_check = $EyeCheck
+	
+	pos_vbox = $PositionVBox
+	position_h_slider = $PositionVBox/HorPosition/PositionHorSlider
+	position_v_slider = $PositionVBox/VerPosition/PositionVerSlider
+	rotation_slider = $PositionVBox/Rotation/RotationSlider
+	size_slider = $PositionVBox/Size/SizeSlider
+	h_pos_label = $PositionVBox/HorPosition/HPosLabel
+	v_pos_label = $PositionVBox/VerPosition/VPosLabel
+	rotation_label = $PositionVBox/Rotation/RotatLabel
+	size_label = $PositionVBox/Size/SizeLabel
+	
 	path_edit = $HBoxContainer2/PathEdit
 	file_dialog = $FileDialogCharacter
 	use_image_button = $HBoxContainer2/UseImageButton
@@ -138,23 +159,50 @@ func _on_sprite_selected(index: int) -> void:
 	char_ctrl.set_sprite(current, sprite_images[index], eye_images[index])
 	eye_check.disabled = eye_images[index] == null
 
+
+func _on_eyes_toggled(toggled_on: bool) -> void:
+	char_ctrl.toggle_eyes(current, toggled_on)
+
 # ====================== POSITIONING ====================== #
-
-func _on_position_changed(value: float) -> void:
-	char_ctrl.set_pos(current, value)
-
-
-func _on_position_snapped(value: float) -> void:
-	position_slider.value = value
-	flip_check.button_pressed = value < 0
-
 
 func _on_flip_toggled(toggled_on: bool) -> void:
 	char_ctrl.set_flip(current, toggled_on)
 
 
-func _on_eyes_toggled(toggled_on: bool) -> void:
-	char_ctrl.toggle_eyes(current, toggled_on)
+func _on_extra_position_settings_toggled(toggled_on: bool) -> void:
+	pos_vbox.visible = toggled_on
+
+
+func _on_position_changed(value: float) -> void:
+	char_ctrl.set_pos(current, value)
+	h_pos_label.text = str(int(value))
+
+
+func _on_position_snapped(value: float) -> void:
+	position_h_slider.value = value
+	flip_check.button_pressed = value < 0
+
+
+func _on_vertical_position_changed(value: float) -> void:
+	char_ctrl.set_vertical_pos(current, value)
+	v_pos_label.text = str(int(value))
+
+
+func _on_rotation_changed(value: float) -> void:
+	char_ctrl.set_rotation(current, value)
+	rotation_label.text = str(int(value))
+
+
+func _on_size_changed(value: float) -> void:
+	char_ctrl.set_size(current, value)
+	size_label.text = str(int(value))
+
+
+func _on_reset_button_pressed() -> void:
+	_on_position_snapped(256)
+	position_v_slider.value = 0
+	rotation_slider.value = 0
+	size_slider.value = 1
 
 # ====================== CUSTOM CHARACTER IMAGE ====================== #
 

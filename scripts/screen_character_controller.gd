@@ -45,3 +45,18 @@ func set_flip(index: int, flip: bool) -> void:
 func set_pos(index: int, pos: float) -> void:
 	if index < len(characters):
 		characters[index].position.x = pos
+
+
+func set_vertical_pos(index: int, pos: float) -> void:
+	if index < len(characters):
+		characters[index].position.y = pos
+
+
+func set_rotation(index: int, degrees: float) -> void:
+	if index < len(characters):
+		characters[index].rotation_degrees = degrees
+
+
+func set_size(index: int, size: float) -> void:
+	if index < len(characters):
+		characters[index].scale = Vector2(size, size)
